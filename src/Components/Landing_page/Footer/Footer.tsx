@@ -3,9 +3,9 @@ import { BsInstagram,BsFacebook} from "react-icons/bs";
 import { SiWhatsapp} from "react-icons/si";
 export default function Footer() {
   return (
-    <div className='footerContainer bg-slate-300 md:h-[280px] h-[500px]  '>
+    <div className='footerContainer bg-slate-300 md:h-[280px]  '>
         <div className="footercontent flex flex-col md:flex-row justify-evenly pt-10 ">
-            <div className="footerText ">
+            <div className="footerText ml-3 ">
                 <div className='w-[350px] '>
                 <h1 className=' mainText text-2xl font-bold '>TraVio.</h1>
                 <span className='text-lg font-serif mt-3'>There are many variations of passages of Lorem the Ipsum available but it is the majority of suffered that a alteration in that some dummy text.</span>
@@ -19,7 +19,7 @@ export default function Footer() {
                <span className='mt-9 md:mt-0 font-bold '>Desgined by @tarvio</span>
                </div>
                 </div>
-               <div className="ul flex flex-row mt-9 md:mt-0 gap-7 md:gap-[100px]">
+               <div className="ul flex flex-row mt-9 md:mt-0 gap-7 md:gap-[100px] ml-3">
                 <div className="support">
                 <h3 className='font-serif font-bold'>Support</h3>
                 <ul className='mt-5 font-serif '>
