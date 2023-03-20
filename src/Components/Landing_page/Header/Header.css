@@ -1,0 +1,13 @@
+.landingImg{
+    width: 100%;
+    height: 590px;
+    background-image:url('../../../Assets/yellow.jpg');
+    background-size:cover;
+    background-position: center;
+}
+.mainText{
+    font-family: 'Playfair Display SC', serif;
+}
+.subText{
+    font-family: 'Charmonman', cursive;
+}

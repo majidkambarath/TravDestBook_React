@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&family=Heebo:wght@600&family=Satisfy&display=swap');
+.parentDiv{
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0, 0, 0.7),rgba(0, 0,0, 0.5)),url('../../Assets/bg.jfif');
+    background-size:cover;
+    background-position: center;
+}
+.imgDiv{
+    width: 100%;
+    height: 500px;
+    background-image: linear-gradient(rgba(0,0, 0, 0.3),rgba(0, 0,0, 0.2)),url('../../Assets/loginbg.png');
+    background-size:cover;
+    background-position: center;
+}
+.First{
+    font-family: 'Bodoni Moda', serif;
+   /* font-size: 18px; */
+   color: aliceblue;
+}
+.second{
+    font-family: 'Satisfy', cursive;
+    color: aliceblue;
+    /* font-size: 15px; */
+}
+.forgotPassword{
+    font-size: 10px;
+}
+span{
+    font-size: 11px;
+    font-family: 'Bodoni Moda', serif;
+}
+.butn{
+    font-size: 11px;
+}
+.link{
+    font-size: 11px;
+}

@@ -1,0 +1,4 @@
+
+.categoryMain::-webkit-scrollbar{
+    display: none;
+}
