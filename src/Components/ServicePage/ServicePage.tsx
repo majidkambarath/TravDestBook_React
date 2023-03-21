@@ -31,10 +31,10 @@ export default function ServicePage() {
         </div>
       </div>
       <div className="serviceSrcoll md:h-[350px]  mt-8 flex md:flex-row  flex-col justify-evenly ml-6 md:ml-0 gap-4 md:gap-0">
-        <div className="divfigure w-[350px] h-[300px] drop-shadow-lg shadow-2xl items-center">
+        <div className="divfigure w-[350px] h-[300px] drop-shadow-lg shadow-2xl items-center ">
           <div className='flex flex-col justify-center items-center'>
           <div>
-          <img src={require('../../Assets/service1.png')} alt="" />
+          <img className='transition ease-in-out delay-100 hover:-translate-h-1 hover:scale-110' src={require('../../Assets/service1.png')} alt="" />
           </div>
           <div>
           <h1 className='font-about font-bold text-2xl underline '>Mountain Trip</h1>
@@ -47,7 +47,7 @@ export default function ServicePage() {
         <div className="divfigure w-[350px] h-[300px] drop-shadow-lg shadow-2xl items-center ">
           <div className='flex flex-col justify-center items-center'>
           <div>
-          <img className='mt-6' src={require('../../Assets/service2.png')} alt="" />
+          <img className='mt-6 transition ease-in-out delay-100 hover:-translate-h-1 hover:scale-110 ' src={require('../../Assets/service2.png')} alt="" />
           </div>
           <div>
           <h1 className='font-about font-bold text-2xl underline  '>Camping</h1>
@@ -60,7 +60,7 @@ export default function ServicePage() {
         <div className="divfigure w-[350px] h-[300px] drop-shadow-lg shadow-2xl items-center">
           <div className='flex flex-col justify-center items-center'>
           <div>
-          <img src={require('../../Assets/service3.png')} alt="" />
+          <img className='transition ease-in-out delay-100 hover:-translate-h-1 hover:scale-110' src={require('../../Assets/service3.png')} alt="" />
           </div>
           <div>
           <h1 className='font-about font-bold text-2xl underline '>River Rafting</h1>
@@ -75,7 +75,7 @@ export default function ServicePage() {
         <div className="divfigure w-[350px] h-[300px] drop-shadow-lg shadow-2xl items-center">
           <div className='flex flex-col justify-center items-center'>
           <div>
-          <img src={require('../../Assets/service4.png')} alt="" />
+          <img className='transition ease-in-out delay-100 hover:-translate-h-1 hover:scale-110' src={require('../../Assets/service4.png')} alt="" />
           </div>
           <div>
           <h1 className='font-about font-bold text-2xl underline '>Surfing Spots</h1>
@@ -88,7 +88,7 @@ export default function ServicePage() {
         <div className="divfigure w-[350px] h-[300px] drop-shadow-lg shadow-2xl items-center ">
           <div className='flex flex-col justify-center items-center'>
           <div>
-          <img className='mt-6' src={require('../../Assets/service5.png')} alt="" />
+          <img className='mt-6 transition ease-in-out delay-100 hover:-translate-h-1 hover:scale-110' src={require('../../Assets/service5.png')} alt="" />
           </div>
           <div>
           <h1 className='font-about font-bold text-2xl underline  '>Diving Spots</h1>
@@ -101,7 +101,7 @@ export default function ServicePage() {
         <div className="divfigure w-[350px] h-[300px] drop-shadow-lg shadow-2xl items-center">
           <div className='flex flex-col justify-center items-center'>
           <div>
-          <img src={require('../../Assets/service6.png')} alt="" />
+          <img className='transition ease-in-out delay-100 hover:-translate-h-1 hover:scale-110' src={require('../../Assets/service6.png')} alt="" />
           </div>
           <div>
           <h1 className='font-about font-bold text-2xl underline '>City Tour</h1>

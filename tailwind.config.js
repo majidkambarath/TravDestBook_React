@@ -9,6 +9,7 @@ module.exports = {
     fontFamily:{
       'about':['Cormorant Garamond'],
       'slab':['Josefin Slab'],
+      'Nanum' : ['Nanum Myeongjo']
     },
     extend: {},
   },

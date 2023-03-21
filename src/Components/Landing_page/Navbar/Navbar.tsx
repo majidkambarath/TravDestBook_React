@@ -26,34 +26,34 @@ function Navbar({onClick}:props) {
     </div>
     <div className="hidden w-full md:block md:w-auto" id="navbar-default">
       <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-[50px] md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-        <li className="block py-2 pl-3 pr-4 text-black hover:bg-slate-400 bg-white font-serif rounded md:bg-transparent md:text-white md:text-md md:font-bold  md:p-0 dark:text-white" aria-current="page" >
+        <li className="block py-2 pl-3 pr-4 text-black bg-white font-serif rounded md:bg-transparent md:text-white md:text-md md:font-bold  md:p-0 dark:text-white" aria-current="page" >
             <NavLink to='/'>
             HOME
             </NavLink>
         </li>
-        <li className="block py-2 pl-3 pr-4 text-black hover:bg-slate-400 md:hover:bg-none bg-white font-serif rounded md:bg-transparent md:text-white md:text-md md:font-bold  md:p-0 dark:text-white"  >
+        <li className="block py-2 pl-3 pr-4 text-black md:hover:bg-none bg-white font-serif rounded md:bg-transparent md:text-white md:text-md md:font-bold  md:p-0 dark:text-white"  >
             <NavLink to='/destination'>
             DESTINATIONS
             </NavLink>
         </li>
-        <li className="block py-2 pl-3 pr-4 text-black hover:bg-slate-400 md:hover:bg-none bg-white font-serif rounded md:bg-transparent md:text-white md:text-md md:font-bold  md:p-0 dark:text-white" >
+        <li className="block py-2 pl-3 pr-4 text-black md:hover:bg-none bg-white font-serif rounded md:bg-transparent md:text-white md:text-md md:font-bold  md:p-0 dark:text-white" >
             <NavLink to='/about'>
             ABOUTS
             </NavLink>
         </li>
-        <li className="block py-2 pl-3 pr-4 text-black hover:bg-slate-400 md:hover:bg-none bg-white font-serif rounded md:bg-transparent md:text-white md:text-md md:font-bold  md:p-0 dark:text-white"  >
+        <li className="block py-2 pl-3 pr-4 text-black md:hover:bg-none bg-white font-serif rounded md:bg-transparent md:text-white md:text-md md:font-bold  md:p-0 dark:text-white"  >
             <NavLink to='/service'>
             SERVICES
             </NavLink>
           
         </li>
-        <li className="block py-2 pl-3 pr-4 text-black hover:bg-slate-400 md:hover:bg-none bg-white font-serif rounded md:bg-transparent md:text-white md:text-md md:font-bold  md:p-0 dark:text-white"  >
+        <li className="block py-2 pl-3 pr-4 text-black md:hover:bg-none bg-white font-serif rounded md:bg-transparent md:text-white md:text-md md:font-bold  md:p-0 dark:text-white"  >
             <NavLink to='/contact'>
             CONTACTS
             </NavLink>
           
         </li>
-        <li className="block py-2 pl-3 pr-4 text-black hover:bg-slate-400 md:hover:bg-none bg-white font-serif rounded md:bg-transparent md:text-white md:text-md md:font-bold  md:p-0 dark:text-white"  >
+        <li className="block py-2 pl-3 pr-4 text-black md:hover:bg-none bg-white font-serif rounded md:bg-transparent md:text-white md:text-md md:font-bold  md:p-0 dark:text-white"  >
             <NavLink to='/booking'>
             BOOK NOW
             </NavLink>

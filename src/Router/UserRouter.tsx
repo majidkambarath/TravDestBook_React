@@ -6,6 +6,7 @@ import Login from '../Pages/Login_page';
 import AuthVerify from '../Pages/AuthVerify';
 import AboutPage from '../Pages/AboutPage';
 import ServicePage from '../Pages/ServicePage';
+import ContactPage from '../Pages/ContactPage';
 export default function UserRouter() {
   return (
    <Router>
@@ -16,6 +17,7 @@ export default function UserRouter() {
     <Route path='/otp' element={<AuthVerify/>} />
     <Route path='/about' element={<AboutPage/>} />
     <Route path='/service' element={<ServicePage/>} />
+    <Route path='/contact' element={<ContactPage/>} />
     </Routes>
    </Router>
   )
