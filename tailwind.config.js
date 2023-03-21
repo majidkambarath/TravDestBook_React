@@ -6,7 +6,10 @@ module.exports = {
    
 ],
   theme: {
-     
+    fontFamily:{
+      'about':['Cormorant Garamond'],
+      'slab':['Josefin Slab'],
+    },
     extend: {},
   },
   plugins: [

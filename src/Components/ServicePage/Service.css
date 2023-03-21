@@ -1,0 +1,7 @@
+.serviceImg{
+    width: 100%;
+    height: 550px;
+    background-image:url('../../Assets/bg3.webp');
+    background-size:cover;
+    background-position: center;
+}

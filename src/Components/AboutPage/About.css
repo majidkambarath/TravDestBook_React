@@ -1,0 +1,14 @@
+.aboutImg{
+    width: 100%;
+    height: 490px;
+    background-image:url('../../Assets/aboutbg.jpg');
+    background-size:cover;
+    background-position: center;
+}
+.subcontanier{
+    width: 100%;
+    height: 500px;
+    background-image:url('../../Assets/aboutbg2.jpg');
+    background-size:cover;
+    background-position: center;
+}
