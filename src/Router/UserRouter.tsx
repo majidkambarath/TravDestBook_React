@@ -7,6 +7,7 @@ import AuthVerify from '../Pages/AuthVerify';
 import AboutPage from '../Pages/AboutPage';
 import ServicePage from '../Pages/ServicePage';
 import ContactPage from '../Pages/ContactPage';
+import DestinationPage from '../Pages/DestinationPage';
 export default function UserRouter() {
   return (
    <Router>
@@ -18,6 +19,7 @@ export default function UserRouter() {
     <Route path='/about' element={<AboutPage/>} />
     <Route path='/service' element={<ServicePage/>} />
     <Route path='/contact' element={<ContactPage/>} />
+    <Route path='/destination' element={<DestinationPage/>} />
     </Routes>
    </Router>
   )

@@ -17,6 +17,7 @@ export default function Contact() {
               Contacts
               </div>
         </div>
+        <div className="w-full shadow-xl drop-shadow-2xl shadow-slate-800 h-7 -mt-[29px] "></div>
               <div className='Contact_container  md:h-[500px] flex md:flex-row flex-col'>
                 <div className="contact_text md:pl-[100px] mt-10">
                  <div className="textContact">

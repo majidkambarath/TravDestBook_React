@@ -20,6 +20,7 @@ export default function AboutPage () {
               About Us
               </div>
        </div>
+       <div className="w-full shadow-xl drop-shadow-2xl shadow-slate-800 h-7 -mt-[29px] "></div>
        <div className="aboutmain md:flex md:h-[550px]  flex flex-col-reverse md:flex-row-reverse ">
           <div className='image md:flex md:mt-10 '>
             <div className='md:mt-[110px] md:ml-[100px] ml-5 mt-4  '>

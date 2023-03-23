@@ -19,6 +19,7 @@ export default function ServicePage() {
               </div>
         
       </div>
+      <div className="w-full shadow-xl drop-shadow-2xl shadow-slate-800 h-7 -mt-[29px] "></div>
       <div className="servicecontents flex justify-center flex-col  items-center mt-6 ">
         <div >
           <h1 className='text-4xl text-yellow-500 font-about'>OUR SERVICES</h1>
@@ -88,7 +89,7 @@ export default function ServicePage() {
         <div className="divfigure w-[350px] h-[300px] drop-shadow-lg shadow-2xl items-center ">
           <div className='flex flex-col justify-center items-center'>
           <div>
-          <img className='mt-6 transition ease-in-out delay-100 hover:-translate-h-1 hover:scale-110' src={require('../../Assets/service5.png')} alt="" />
+          <img className=' transition ease-in-out delay-100 hover:-translate-h-1 hover:scale-110' src={require('../../Assets/service5.png')} alt="" />
           </div>
           <div>
           <h1 className='font-about font-bold text-2xl underline  '>Diving Spots</h1>

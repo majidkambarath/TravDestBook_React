@@ -1,0 +1,13 @@
+.Destination_head{
+    width: 100%;
+    height: 510px;
+    background-image:url('../../Assets/destination.webp');
+    background-size:cover;
+    background-position: center;
+}
+
+.fade{
+    height: 14.5rem;
+    background-image: linear-gradient(180deg,transparent,rgba(37,37,37,.61),#111);
+    
+}
