@@ -123,6 +123,7 @@ export default function Header() {
                   <input
                     className="w-[190px]  h-8  md:h-[50px]  md:hover:border-yellow-400 cursor-pointer md:border-cyan-100 md:rounded-md md:bg-transparent md:outline-none bg-white md:w-40 outline outline-black outline-1  placeholder-slate-700 "
                     type="date"
+                    placeholder="Date"
                   />
                 </div>
                 <div className="spanDiv -mt-[10px] ">

@@ -1,6 +1,6 @@
 import React from 'react'
 import './cate.css'
-export default function () {
+export default function Category () {
   return (
     <div className='categoryContainer bg-zinc-100  w-full md:h-[450px]  '>
         <div className="Mainheading pt-10 ml-3 md:ml-9  ">
