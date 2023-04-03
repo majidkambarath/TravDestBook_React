@@ -1,9 +1,7 @@
-import React from 'react'
-import axios from 'axios'
-import process from 'process'
 
+import axios from 'axios'
 const axiosInstance = axios.create({
-    baseURL:process.env.REACT_APP_BASEURL,
+    baseURL:'http://localhost:2000',
     headers: {
         'Content-Type': 'application/json'
     }

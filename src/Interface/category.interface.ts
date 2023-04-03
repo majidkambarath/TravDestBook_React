@@ -1,4 +1,4 @@
 export interface categoryInterface{
-    packageCategory : string,
-    Activity : string
+    packageCategory? : string,
+   
 }

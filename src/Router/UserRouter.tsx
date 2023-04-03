@@ -1,13 +1,13 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import Register from '../Pages/Register_page';
-import HomePage from '../Pages/Landing_page'
-import Login from '../Pages/Login_page';
-import AuthVerify from '../Pages/AuthVerify';
-import AboutPage from '../Pages/AboutPage';
-import ServicePage from '../Pages/ServicePage';
-import ContactPage from '../Pages/ContactPage';
-import DestinationPage from '../Pages/DestinationPage';
+import Register from '../Pages/User/Register_page';
+import HomePage from '../Pages/User/Landing_page'
+import Login from '../Pages/User/Login_page';
+import AuthVerify from '../Pages/User/AuthVerify';
+import AboutPage from '../Pages/User/AboutPage';
+import ServicePage from '../Pages/User/ServicePage';
+import ContactPage from '../Pages/User/ContactPage';
+import DestinationPage from '../Pages/User/DestinationPage';
 export default function UserRouter() {
   return (
    <Router>

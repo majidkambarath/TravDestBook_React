@@ -1,6 +1,25 @@
-import React from "react";
-
+import React,{useEffect} from "react";
+import { RootState } from "../../../Redux/store";
+import {useSelector,useDispatch} from 'react-redux'
+import { fetchCategory } from "../../../Api/adminCategory/fetchCategory";
+import {packageCategoryData} from '../../../Redux/slice/packageSlice'
 export default function Dashboard() {
+  const setpackage = useSelector((state: RootState)=> state.package.packageCategory); 
+  const dispatch = useDispatch()
+  useEffect(()=>{
+      const fetchData = async()=>{
+        try {
+          await fetchCategory().then((res)=>{
+            dispatch(packageCategoryData(res.data.fetch))
+             
+          })
+        } catch (error) {
+          console.log(error);
+          
+        }
+      }
+      fetchData()
+  },[dispatch])
   return (
     <div>
         <h1 className="font-Ariza text-2xl ml-4" >OverView</h1>

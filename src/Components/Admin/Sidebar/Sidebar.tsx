@@ -16,6 +16,7 @@ const AdminNavbar = () => {
     { name: "User", link: "/", icon: AiOutlineUsergroupAdd },
     { name: "Destination ", link: "/admin/destination", icon: GrMapLocation },
     { name: "Category", link: "/admin/category", icon: BsBuildingAdd },
+    { name: "Actvtity", link: "/admin/actvtity", icon: BsBuildingAdd },
     // { name: "Payments", link: "/", icon: AiOutlineSchedule },
     { name: "Logout", link: "/", icon: MdOutlineLogout },
   ];

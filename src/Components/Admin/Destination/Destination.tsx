@@ -1,6 +1,18 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../Redux/store";
 
 export default function Destination() {
+  const setpackage: any = useSelector<any>(
+    (state: RootState) => state.package.packageCategory
+  );
+  console.log(setpackage);
+    const singleCategory = setpackage.map((item : any,)=> 
+       <option  className="text-black" value={item.packageCategory} id={item.packageCategory}>{item.packageCategory}</option>
+    )
+    const [option,setOption] =React.useState<string>()
+    console.log(option);
+    
   return (
     <div className="w-full">
       <div className="flex justify-between mt-3">
@@ -78,7 +90,7 @@ export default function Destination() {
                     htmlFor="Title"
                     className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
-                   Destination Title
+                    Destination Title
                   </label>
                 </div>
                 <div className="relative z-0 w-full mb-6 group">
@@ -98,42 +110,75 @@ export default function Destination() {
                   </label>
                 </div>
                 <div className="relative z-0 w-full mb-6 group">
-                    <input
-                      type="number"
-                      name="price"
-                      id="price"
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      placeholder=" "
-                      required
-                    />
-                    <label
-                      htmlFor="price"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      $ Price
-                    </label>
-                  </div>
-                  <div className="relative z-0 w-full mb-6 group">
-                    <input
-                      type="file"
-                      name="image"
-                      id="image"
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      placeholder=" "
-                      required
-                    />
-                    <label
-                      htmlFor="image"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Images
-                    </label>
-                  </div>
+                  <input
+                    type="number"
+                    name="price"
+                    id="price"
+                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" "
+                    required
+                  />
+                  <label
+                    htmlFor="price"
+                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >
+                    $ Price
+                  </label>
+                </div>
+                <div className="relative z-0 w-full mb-6 group">
+                  <input
+                    type="file"
+                    name="image"
+                    id="image"
+                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" "
+                    required
+                  />
+                  <label
+                    htmlFor="image"
+                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >
+                    Images
+                  </label>
+                </div>
+                <div className="flex">
+                <div className="relative z-0  mb-6 group">
+                  <label
+                    htmlFor="Package_Category"
+                    className="peer-focus:font-medium   text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >
+                    Package Category
+                  </label>
+                  <select
+                    id="Package_Category"
+                    onChange={(e)=>{setOption(e.target.value)}}
+                    className="bg-gray-50 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  >
+                    <option  selected>Choose a Category</option>
+                      {singleCategory}
+                  </select>
+                </div>
+                <div className="relative z-0  mb-6 group ml-2">
+                  <label
+                    htmlFor="Package_Category"
+                    className="peer-focus:font-medium   text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >
+                    Activities
+                  </label>
+                  <select
+                    id="Package_Category"
+                    onChange={(e)=>{setOption(e.target.value)}}
+                    className="bg-gray-50 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  >
+                    <option  selected>Choose a Activities</option>
+                      {singleCategory}
+                  </select>
+                </div>
+                </div>
+               
                 <h1 className="font-slab">Duration</h1>
                 <div className="grid md:grid-cols-2 md:gap-6 mt-3">
-                    
                   <div className="relative z-0 w-full mb-6 group">
-                    
                     <input
                       type="text"
                       name="duration"
@@ -146,9 +191,10 @@ export default function Destination() {
                       htmlFor="duration"
                       className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >
-                     Day
+                      Day
                     </label>
                   </div>
+
                   <div className="relative z-0 w-full mb-6 group">
                     <input
                       type="duration"
@@ -173,7 +219,7 @@ export default function Destination() {
                       type="checkbox"
                       name="Hotels"
                       id="Hotels"
-                      value='Hotels'
+                      value="Hotels"
                       className=""
                       placeholder=" "
                       required
@@ -182,7 +228,7 @@ export default function Destination() {
                       htmlFor="Hotels"
                       className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400  ml-3 mt-1"
                     >
-                     Hotels
+                      Hotels
                     </label>
                   </div>
                   <div className="relative z-0 w-full mb-6 group">
@@ -190,7 +236,7 @@ export default function Destination() {
                       type="checkbox"
                       name="Flight"
                       id="Flight"
-                      value='Flight'
+                      value="Flight"
                       className=""
                       placeholder=" "
                       required
@@ -199,7 +245,7 @@ export default function Destination() {
                       htmlFor="Flight"
                       className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 ml-3 mt-1"
                     >
-                     Flight
+                      Flight
                     </label>
                   </div>
                   <div className="relative z-0 w-full mb-6 group">
@@ -207,7 +253,7 @@ export default function Destination() {
                       type="checkbox"
                       name="Sightseeing"
                       id="Sightseeing"
-                      value='Sightseeing'
+                      value="Sightseeing"
                       className=""
                       placeholder=" "
                       required
@@ -224,7 +270,7 @@ export default function Destination() {
                       type="checkbox"
                       name="Meals"
                       id="Meals"
-                      value='Meals'
+                      value="Meals"
                       className=""
                       placeholder=" "
                       required
@@ -241,7 +287,7 @@ export default function Destination() {
                       type="checkbox"
                       name="Transfers"
                       id="Transfers"
-                      value='Transfers'
+                      value="Transfers"
                       className=""
                       placeholder=" "
                       required

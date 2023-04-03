@@ -1,23 +1,27 @@
-import React ,{useState} from 'react'
-import {categoryApi} from '../../../Api/adminCategory/category'
-// import {useNavigate} from 'react-router-dom'
-import CateTable from '../DataTable/catetable' 
-export default function CategoryPage() {
-  const [category,setCategory]= useState<string>()
-  // const navigate = useNavigate()
-  const handleSubmit = async(e:any)=>{
-    e.preventDefault();
-    categoryApi(category).then((res)=>{
-      console.log(res.data);
-
-    })
-  }
-
+import React from 'react'
+import {actvtiyApi} from '../../../Api/adminActvity/actvtiyApi'
+// import { activityInterface } from '../../../Interface/activity.interface';
+import DataTable from '../../../Components/Admin/DataTable/actvtityTable'
+export default function Activity() {
+  const [actvtity,setActitviy]=React.useState<string>()
+    const handleSubmit = async(e:any)=>{
+    
+        try {
+          e.preventDefault();
+           actvtiyApi(actvtity).then((res:any)=>{
+            console.log(res.data);
+            
+          })
+        } catch (error) {
+          console.log(error);
+          
+        }
+    }
   return (
     <div className="w-full">
     <div className="flex justify-between mt-3">
       <h1 className="md:text-2xl text-lg ml-3 md:ml-4  font-Nanum font-semibold underline">
-        Category Management
+      Actvtity Management
       </h1>
       <button
         type="button"
@@ -51,7 +55,7 @@ export default function CategoryPage() {
               className="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
               id="exampleModalLabel"
             >
-              Category
+              Actvtity Management
             </h5>
             <button
               type="button"
@@ -77,25 +81,26 @@ export default function CategoryPage() {
           </div>
           <div data-te-modal-body-ref className="relative p-4">
             <form onSubmit={handleSubmit}>
+              
               <div className="relative z-0 w-full mb-6 group">
                 <input
                   type="text"
-                  name="package Cate"
-                  id="package Cate"
+                  name="Activity"
+                  id="Activity"
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
-                  onChange={(e)=>{setCategory(e.target.value)}}
-                  value={category}
+                  onChange={(e)=>{setActitviy(e.target.value)}}
+                  value={actvtity}
                   required
                 />
                 <label
-                  htmlFor="package Cate"
+                  htmlFor="Activity"
                   className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
-                 Package Category
+                  Activity
                 </label>
               </div>
-          
+             
               <button
                 type="submit"
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -108,7 +113,7 @@ export default function CategoryPage() {
       </div>
     </div>
     <div className='mt-10'>
-      <CateTable />
+      <DataTable/>
     </div>
   </div>
   )
