@@ -1,9 +1,10 @@
 import {configureStore} from '@reduxjs/toolkit';
 import packageSlice from './slice/packageSlice';
-
+import actvitiesSlice from './slice/actvitiesSlice';
 export const store = configureStore({
     reducer:{
-        package:packageSlice
+        package:packageSlice,
+        acitvtiy:actvitiesSlice
     },
 })
 

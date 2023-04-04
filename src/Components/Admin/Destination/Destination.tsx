@@ -7,12 +7,24 @@ export default function Destination() {
     (state: RootState) => state.package.packageCategory
   );
   console.log(setpackage);
-    const singleCategory = setpackage.map((item : any,)=> 
-       <option  className="text-black" value={item.packageCategory} id={item.packageCategory}>{item.packageCategory}</option>
-    )
-    const [option,setOption] =React.useState<string>()
-    console.log(option);
-    
+  const setactvity = useSelector((state: RootState) => state.acitvtiy.Activity);
+  const actvityLisit = setactvity.map((items: any) => (
+    <option className="text-black" value={items.activtiy} id={items.activtiy}>
+      {items.activtiy}
+    </option>
+  ));
+  const singleCategory = setpackage.map((item: any) => (
+    <option
+      className="text-black"
+      value={item.packageCategory}
+      id={item.packageCategory}
+    >
+      {item.packageCategory}
+    </option>
+  ));
+  const [option, setOption] = React.useState<string>();
+  console.log(option);
+
   return (
     <div className="w-full">
       <div className="flex justify-between mt-3">
@@ -142,40 +154,44 @@ export default function Destination() {
                   </label>
                 </div>
                 <div className="flex">
-                <div className="relative z-0  mb-6 group">
-                  <label
-                    htmlFor="Package_Category"
-                    className="peer-focus:font-medium   text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    Package Category
-                  </label>
-                  <select
-                    id="Package_Category"
-                    onChange={(e)=>{setOption(e.target.value)}}
-                    className="bg-gray-50 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  >
-                    <option  selected>Choose a Category</option>
+                  <div className="relative z-0  mb-6 group">
+                    <label
+                      htmlFor="Package_Category"
+                      className="peer-focus:font-medium   text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    >
+                      Package Category
+                    </label>
+                    <select
+                      id="Package_Category"
+                      onChange={(e) => {
+                        setOption(e.target.value);
+                      }}
+                      className="bg-gray-50 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                      <option selected>Choose a Category</option>
                       {singleCategory}
-                  </select>
+                    </select>
+                  </div>
+                  <div className="relative z-0  mb-6 group ml-2">
+                    <label
+                      htmlFor="Package_Category"
+                      className="peer-focus:font-medium   text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    >
+                      Activities
+                    </label>
+                    <select
+                      id="Package_Category"
+                      onChange={(e) => {
+                        setOption(e.target.value);
+                      }}
+                      className="bg-gray-50 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                      <option selected>Choose a Activities</option>
+                      {actvityLisit}
+                    </select>
+                  </div>
                 </div>
-                <div className="relative z-0  mb-6 group ml-2">
-                  <label
-                    htmlFor="Package_Category"
-                    className="peer-focus:font-medium   text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    Activities
-                  </label>
-                  <select
-                    id="Package_Category"
-                    onChange={(e)=>{setOption(e.target.value)}}
-                    className="bg-gray-50 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  >
-                    <option  selected>Choose a Activities</option>
-                      {singleCategory}
-                  </select>
-                </div>
-                </div>
-               
+
                 <h1 className="font-slab">Duration</h1>
                 <div className="grid md:grid-cols-2 md:gap-6 mt-3">
                   <div className="relative z-0 w-full mb-6 group">
