@@ -72,7 +72,7 @@ export default function Dashboard() {
           </svg>
         </div>
       </div>
-      <div className="group flex flex-col justify-between rounded-sm bg-white p-4 shadow-xl transition-shadow hover:shadow-lg sm:p-6 lg:p-8">
+      <div className="group  flex flex-col justify-between rounded-sm bg-white p-4 shadow-xl transition-shadow hover:shadow-lg sm:p-6 lg:p-8">
         <div>
           <h3 className="text-3xl font-bold text-indigo-600 sm:text-5xl">
             100+
@@ -85,24 +85,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="mt-8 inline-flex items-center gap-2 text-indigo-600 sm:mt-12 lg:mt-16">
-          <p className="font-medium sm:text-lg">How we did it</p>
-
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 transition group-hover:translate-x-3"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
-        </div>
+       
       </div>
       <div className="group flex flex-col justify-between rounded-sm bg-white p-4 shadow-xl transition-shadow hover:shadow-lg sm:p-6 lg:p-8">
         <div>

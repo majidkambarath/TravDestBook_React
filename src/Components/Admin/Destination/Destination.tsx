@@ -1,13 +1,78 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../Redux/store";
-
+import { destinationInterface } from "../../../Interface/destination.interface";
+import { destinationApi } from "../../../Api/adminDestination/addDestination";
+import {useNavigate} from 'react-router-dom'
 export default function Destination() {
+  const navigate = useNavigate()
   const setpackage: any = useSelector<any>(
     (state: RootState) => state.package.packageCategory
   );
   console.log(setpackage);
   const setactvity = useSelector((state: RootState) => state.acitvtiy.Activity);
+ 
+    
+  const initialState: destinationInterface = {
+    title: "",
+    descrption: "",
+    price: "",
+    file: null,
+    packageCategory: "",
+    activity: "",
+    priceCategory: "",
+ 
+  };
+ const [durationn,setDuration]=React.useState<{day:string,night:string}>({
+  day: "",
+  night:""
+ })
+ console.log(durationn);
+ 
+  const [formData, setFormData] = React.useState<any>(initialState);
+  console.log(formData);
+  const [option,setOption] = React.useState<{Hotels:string,Flight:string,Sightseeing:string,Meals:string,Transfers:string}>({
+    Hotels:"",
+    Flight:"",
+    Sightseeing:"",
+    Meals:"",
+    Transfers:""
+  })
+  console.log(option);
+  
+ 
+  // const onChangeHandleDuration = (e: any) => {
+  //   const { name, value } = e.target;
+  //   setFormData({
+  //     ...formData,
+  //     duration: {
+  //       ...formData.duration,
+  //       [name]: value,
+  //     },
+  //   });
+  // };
+  const onChangeHandle = (e: any) => {
+    const { name, value, type, checked } = e.target;
+    if (type === "checkbox") {
+      setFormData({
+        ...formData,
+        packageService: {
+          ...formData.packageService,
+          [name]: checked ? value : "",
+        },
+      });
+    }else if(type === "file"){
+      setFormData({
+        ...formData,
+        file:e.target.files[0]
+      })
+    }
+    
+    else {
+      setFormData({ ...formData, [name]: value });
+    }
+  };
+
   const actvityLisit = setactvity.map((items: any) => (
     <option className="text-black" value={items.activtiy} id={items.activtiy}>
       {items.activtiy}
@@ -22,9 +87,62 @@ export default function Destination() {
       {item.packageCategory}
     </option>
   ));
-  const [option, setOption] = React.useState<string>();
-  console.log(option);
-
+  const config= {
+    headers:  {
+      "Content-Type": "multipart/form-data",
+    },
+  };
+  
+  const handleSubmit = async(e:any)=>{
+   e.preventDefault()
+   const data = new FormData();
+   data.append("title",formData.title)
+   data.append("descrption",formData.descrption)
+   data.append("price",formData.price)
+   data.append("file",formData.file)
+   data.append("packageCategory",formData.packageCategory)
+   data.append("activity",formData.activity)
+   data.append("priceCategory",formData.priceCategory)
+   data.append("day",durationn.day)
+   data.append("night",durationn.night)
+   data.append('Hotels',option.Hotels)
+   data.append('Flight',option.Flight)
+   data.append('Sightseeing',option.Sightseeing)
+   data.append('Meals',option.Meals)
+   data.append('Transfers',option.Transfers)
+   await destinationApi(data,config).then((res:any)=>{
+    console.log(res.data);
+    
+     if(res.data.success === true){
+       navigate('/admin/dashboard')
+       
+     }
+    
+   })
+  }
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDuration(state => ({...state, day: event.target.value}))
+    // setDuration((state) => ( {...state, event.target.value}))}
+  }
+  const handlechangeNight = (e:React.ChangeEvent<HTMLInputElement>)=>{
+   setDuration(state => ({...state , night: e.target.value}))
+  }
+  const handleCheck = (e:React.ChangeEvent<HTMLInputElement>)=>{
+    setOption(state=>({...state , Hotels:e.target.value}))
+  }
+  const handleCheck1 = (e:React.ChangeEvent<HTMLInputElement>)=>{
+    setOption(state=>({...state , Flight:e.target.value}))
+  }
+  const handleCheck2 = (e:React.ChangeEvent<HTMLInputElement>)=>{
+    setOption(state=>({...state , Sightseeing:e.target.value}))
+  }
+  const handleCheck3 = (e:React.ChangeEvent<HTMLInputElement>)=>{
+    setOption(state=>({...state , Meals:e.target.value}))
+  }
+  const handleCheck4 = (e:React.ChangeEvent<HTMLInputElement>)=>{
+    setOption(state=>({...state , Transfers:e.target.value}))
+  }
+ 
   return (
     <div className="w-full">
       <div className="flex justify-between mt-3">
@@ -88,18 +206,20 @@ export default function Destination() {
               </button>
             </div>
             <div data-te-modal-body-ref className="relative p-4">
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="relative z-0 w-full mb-6 group">
                   <input
                     type="text"
-                    name="Title"
-                    id="Title"
+                    name="title"
+                    id="title"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
                     required
+                    onChange={onChangeHandle}
+                    value={formData.title}
                   />
                   <label
-                    htmlFor="Title"
+                    htmlFor="title"
                     className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
                     Destination Title
@@ -108,14 +228,16 @@ export default function Destination() {
                 <div className="relative z-0 w-full mb-6 group">
                   <input
                     type="text"
-                    name="Descrption"
-                    id="Descrption"
+                    name="descrption"
+                    id="descrption"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
                     required
+                    onChange={onChangeHandle}
+                    value={formData.descrption}
                   />
                   <label
-                    htmlFor="Descrption"
+                    htmlFor="description"
                     className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
                     Descrption
@@ -129,6 +251,8 @@ export default function Destination() {
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
                     required
+                    onChange={onChangeHandle}
+                    value={formData.price}
                   />
                   <label
                     htmlFor="price"
@@ -140,20 +264,21 @@ export default function Destination() {
                 <div className="relative z-0 w-full mb-6 group">
                   <input
                     type="file"
-                    name="image"
-                    id="image"
+                    name="file"
+                    id="formFile"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
                     required
+                    onChange={onChangeHandle}
                   />
                   <label
-                    htmlFor="image"
+                    htmlFor="formFile"
                     className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
                     Images
                   </label>
                 </div>
-                <div className="flex">
+                <div className="grid grid-flow-dense grid-cols-3">
                   <div className="relative z-0  mb-6 group">
                     <label
                       htmlFor="Package_Category"
@@ -162,10 +287,10 @@ export default function Destination() {
                       Package Category
                     </label>
                     <select
+                      name="packageCategory"
                       id="Package_Category"
-                      onChange={(e) => {
-                        setOption(e.target.value);
-                      }}
+                      onChange={onChangeHandle}
+                      value={formData.packageCategory}
                       className="bg-gray-50 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     >
                       <option selected>Choose a Category</option>
@@ -174,20 +299,39 @@ export default function Destination() {
                   </div>
                   <div className="relative z-0  mb-6 group ml-2">
                     <label
-                      htmlFor="Package_Category"
+                      htmlFor="actvtiy"
                       className="peer-focus:font-medium   text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >
                       Activities
                     </label>
                     <select
-                      id="Package_Category"
-                      onChange={(e) => {
-                        setOption(e.target.value);
-                      }}
+                      name="activity"
+                      id="actvtiy"
+                      onChange={onChangeHandle}
+                      value={formData.activity}
                       className="bg-gray-50 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     >
                       <option selected>Choose a Activities</option>
                       {actvityLisit}
+                    </select>
+                  </div>
+                  <div className="relative z-0  mb-6 group ml-2">
+                    <label
+                      htmlFor="priceCategory"
+                      className="peer-focus:font-medium   text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    >
+                      Price Category
+                    </label>
+                    <select
+                      name="priceCategory"
+                      id="priceCategory"
+                      onChange={onChangeHandle}
+                      className="bg-gray-50 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                      <option selected>Choose a price</option>
+                      <option value="Premium">Premium</option>
+                      <option value="Classic">Classic</option>
+                      <option value="Standard">Standard</option>
                     </select>
                   </div>
                 </div>
@@ -196,15 +340,17 @@ export default function Destination() {
                 <div className="grid md:grid-cols-2 md:gap-6 mt-3">
                   <div className="relative z-0 w-full mb-6 group">
                     <input
-                      type="text"
-                      name="duration"
-                      id="duration"
+                      type="number"
+                      name="day"
+                      id="day"
                       className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                       placeholder=" "
                       required
+                      onChange={(e : React.ChangeEvent<HTMLInputElement>)=>handleChange(e)}
+                      value={durationn.day}
                     />
                     <label
-                      htmlFor="duration"
+                      htmlFor="day"
                       className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >
                       Day
@@ -213,15 +359,17 @@ export default function Destination() {
 
                   <div className="relative z-0 w-full mb-6 group">
                     <input
-                      type="duration"
-                      name="duration"
-                      id="duration"
+                      type="number"
+                      name="night"
+                      id="night"
                       className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                       placeholder=" "
                       required
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>)=>handlechangeNight(e)}
+                      value={ durationn.night}
                     />
                     <label
-                      htmlFor="duration"
+                      htmlFor="night"
                       className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >
                       Night
@@ -238,7 +386,8 @@ export default function Destination() {
                       value="Hotels"
                       className=""
                       placeholder=" "
-                      required
+               
+                      onChange={(e:React.ChangeEvent<HTMLInputElement>)=>handleCheck(e)}
                     />
                     <label
                       htmlFor="Hotels"
@@ -255,7 +404,8 @@ export default function Destination() {
                       value="Flight"
                       className=""
                       placeholder=" "
-                      required
+                     
+                      onChange={(e:React.ChangeEvent<HTMLInputElement>)=>handleCheck1(e)}
                     />
                     <label
                       htmlFor="Flight"
@@ -272,7 +422,8 @@ export default function Destination() {
                       value="Sightseeing"
                       className=""
                       placeholder=" "
-                      required
+                      
+                      onChange={(e:React.ChangeEvent<HTMLInputElement>)=>handleCheck2(e)}
                     />
                     <label
                       htmlFor="Sightseeing"
@@ -289,7 +440,8 @@ export default function Destination() {
                       value="Meals"
                       className=""
                       placeholder=" "
-                      required
+                  
+                      onChange={(e:React.ChangeEvent<HTMLInputElement>)=>handleCheck3(e)}
                     />
                     <label
                       htmlFor="Meals"
@@ -306,7 +458,8 @@ export default function Destination() {
                       value="Transfers"
                       className=""
                       placeholder=" "
-                      required
+                    
+                      onChange={(e:React.ChangeEvent<HTMLInputElement>)=>handleCheck4(e)}
                     />
                     <label
                       htmlFor="Transfers"
