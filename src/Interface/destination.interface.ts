@@ -2,7 +2,6 @@ export interface destinationInterface{
     title:string,
     descrption:string,
     price:string,
-    file?:null,
     packageCategory:string,
     activity:string,
     priceCategory:string,

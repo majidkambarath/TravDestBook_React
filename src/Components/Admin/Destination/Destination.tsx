@@ -1,484 +1,58 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React,{useEffect} from "react";
+import { NavLink } from "react-router-dom";
 import { RootState } from "../../../Redux/store";
-import { destinationInterface } from "../../../Interface/destination.interface";
-import { destinationApi } from "../../../Api/adminDestination/addDestination";
-import {useNavigate} from 'react-router-dom'
+import {useSelector,useDispatch} from 'react-redux'
+import { fetchCategory } from "../../../Api/adminCategory/fetchCategory";
+import { fetchActvityAPi } from "../../../Api/adminActvity/fetchActivity";
+import {packageCategoryData} from '../../../Redux/slice/packageSlice'
+import {actvitiesStateData} from '../../../Redux/slice/actvitiesSlice'
 export default function Destination() {
-  const navigate = useNavigate()
-  const setpackage: any = useSelector<any>(
-    (state: RootState) => state.package.packageCategory
-  );
+  const setpackage = useSelector((state: RootState)=> state.package.packageCategory); 
+  const setActities = useSelector((state:RootState)=>state.acitvtiy.Activity)
   console.log(setpackage);
-  const setactvity = useSelector((state: RootState) => state.acitvtiy.Activity);
- 
-    
-  const initialState: destinationInterface = {
-    title: "",
-    descrption: "",
-    price: "",
-    file: null,
-    packageCategory: "",
-    activity: "",
-    priceCategory: "",
- 
-  };
- const [durationn,setDuration]=React.useState<{day:string,night:string}>({
-  day: "",
-  night:""
- })
- console.log(durationn);
- 
-  const [formData, setFormData] = React.useState<any>(initialState);
-  console.log(formData);
-  const [option,setOption] = React.useState<{Hotels:string,Flight:string,Sightseeing:string,Meals:string,Transfers:string}>({
-    Hotels:"",
-    Flight:"",
-    Sightseeing:"",
-    Meals:"",
-    Transfers:""
-  })
-  console.log(option);
-  
- 
-  // const onChangeHandleDuration = (e: any) => {
-  //   const { name, value } = e.target;
-  //   setFormData({
-  //     ...formData,
-  //     duration: {
-  //       ...formData.duration,
-  //       [name]: value,
-  //     },
-  //   });
-  // };
-  const onChangeHandle = (e: any) => {
-    const { name, value, type, checked } = e.target;
-    if (type === "checkbox") {
-      setFormData({
-        ...formData,
-        packageService: {
-          ...formData.packageService,
-          [name]: checked ? value : "",
-        },
-      });
-    }else if(type === "file"){
-      setFormData({
-        ...formData,
-        file:e.target.files[0]
-      })
-    }
-    
-    else {
-      setFormData({ ...formData, [name]: value });
-    }
-  };
-
-  const actvityLisit = setactvity.map((items: any) => (
-    <option className="text-black" value={items.activtiy} id={items.activtiy}>
-      {items.activtiy}
-    </option>
-  ));
-  const singleCategory = setpackage.map((item: any) => (
-    <option
-      className="text-black"
-      value={item.packageCategory}
-      id={item.packageCategory}
-    >
-      {item.packageCategory}
-    </option>
-  ));
-  const config= {
-    headers:  {
-      "Content-Type": "multipart/form-data",
-    },
-  };
-  
-  const handleSubmit = async(e:any)=>{
-   e.preventDefault()
-   const data = new FormData();
-   data.append("title",formData.title)
-   data.append("descrption",formData.descrption)
-   data.append("price",formData.price)
-   data.append("file",formData.file)
-   data.append("packageCategory",formData.packageCategory)
-   data.append("activity",formData.activity)
-   data.append("priceCategory",formData.priceCategory)
-   data.append("day",durationn.day)
-   data.append("night",durationn.night)
-   data.append('Hotels',option.Hotels)
-   data.append('Flight',option.Flight)
-   data.append('Sightseeing',option.Sightseeing)
-   data.append('Meals',option.Meals)
-   data.append('Transfers',option.Transfers)
-   await destinationApi(data,config).then((res:any)=>{
-    console.log(res.data);
-    
-     if(res.data.success === true){
-       navigate('/admin/dashboard')
-       
-     }
-    
-   })
-  }
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDuration(state => ({...state, day: event.target.value}))
-    // setDuration((state) => ( {...state, event.target.value}))}
-  }
-  const handlechangeNight = (e:React.ChangeEvent<HTMLInputElement>)=>{
-   setDuration(state => ({...state , night: e.target.value}))
-  }
-  const handleCheck = (e:React.ChangeEvent<HTMLInputElement>)=>{
-    setOption(state=>({...state , Hotels:e.target.value}))
-  }
-  const handleCheck1 = (e:React.ChangeEvent<HTMLInputElement>)=>{
-    setOption(state=>({...state , Flight:e.target.value}))
-  }
-  const handleCheck2 = (e:React.ChangeEvent<HTMLInputElement>)=>{
-    setOption(state=>({...state , Sightseeing:e.target.value}))
-  }
-  const handleCheck3 = (e:React.ChangeEvent<HTMLInputElement>)=>{
-    setOption(state=>({...state , Meals:e.target.value}))
-  }
-  const handleCheck4 = (e:React.ChangeEvent<HTMLInputElement>)=>{
-    setOption(state=>({...state , Transfers:e.target.value}))
-  }
- 
+  console.log(setActities);
+  const dispatch = useDispatch()
+  useEffect(()=>{
+      const fetchData = async()=>{
+        try {
+          await fetchCategory().then((res)=>{
+            dispatch(packageCategoryData(res.data.fetch))
+             
+          })
+        } catch (error) {
+          console.log(error);
+          
+        }
+      }
+      const fetchActivity =async () => {
+        try {
+          await fetchActvityAPi().then((res)=>{
+            dispatch(actvitiesStateData(res?.data.fetch))
+          })
+        } catch (error) {
+          console.log(error);
+          
+        }
+      }
+      fetchData()
+      fetchActivity()
+  },[dispatch])
   return (
     <div className="w-full">
       <div className="flex justify-between mt-3">
         <h1 className="md:text-2xl text-lg ml-3 md:ml-0  font-Nanum font-semibold underline">
           Destination Management
         </h1>
-        <button
+        <NavLink to={'/admin/add_destination'}>
+
+       
+            <button
           type="button"
-          data-te-target="#staticBackdrop"
-          data-te-ripple-init
-          data-te-ripple-color="light"
-          data-te-toggle="modal"
           className="md:w-[110px] w-[80px] h-7 outline hover:outline-blue-300 outline-gray-400 outline-2 mr-5 md:mr-10 "
         >
           Add
         </button>
-      </div>
-
-      <div
-        data-te-modal-init
-        className="fixed top-0 left-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
-        id="staticBackdrop"
-        data-te-backdrop="static"
-        data-te-keyboard="false"
-        tabIndex={-1}
-        aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
-      >
-        <div
-          data-te-modal-dialog-ref
-          className="pointer-events-none relative w-auto translate-y-[-50px] opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:max-w-[500px]"
-        >
-          <div className="min-[576px]:shadow-[0_0.5rem_1rem_rgba(#000, 0.15)] pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600">
-            <div className="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
-              <h5
-                className="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
-                id="exampleModalLabel"
-              >
-                Add package Details
-              </h5>
-              <button
-                type="button"
-                className="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
-                data-te-modal-dismiss
-                aria-label="Close"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  className="h-6 w-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
-            <div data-te-modal-body-ref className="relative p-4">
-              <form onSubmit={handleSubmit}>
-                <div className="relative z-0 w-full mb-6 group">
-                  <input
-                    type="text"
-                    name="title"
-                    id="title"
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" "
-                    required
-                    onChange={onChangeHandle}
-                    value={formData.title}
-                  />
-                  <label
-                    htmlFor="title"
-                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    Destination Title
-                  </label>
-                </div>
-                <div className="relative z-0 w-full mb-6 group">
-                  <input
-                    type="text"
-                    name="descrption"
-                    id="descrption"
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" "
-                    required
-                    onChange={onChangeHandle}
-                    value={formData.descrption}
-                  />
-                  <label
-                    htmlFor="description"
-                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    Descrption
-                  </label>
-                </div>
-                <div className="relative z-0 w-full mb-6 group">
-                  <input
-                    type="number"
-                    name="price"
-                    id="price"
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" "
-                    required
-                    onChange={onChangeHandle}
-                    value={formData.price}
-                  />
-                  <label
-                    htmlFor="price"
-                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    $ Price
-                  </label>
-                </div>
-                <div className="relative z-0 w-full mb-6 group">
-                  <input
-                    type="file"
-                    name="file"
-                    id="formFile"
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" "
-                    required
-                    onChange={onChangeHandle}
-                  />
-                  <label
-                    htmlFor="formFile"
-                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    Images
-                  </label>
-                </div>
-                <div className="grid grid-flow-dense grid-cols-3">
-                  <div className="relative z-0  mb-6 group">
-                    <label
-                      htmlFor="Package_Category"
-                      className="peer-focus:font-medium   text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Package Category
-                    </label>
-                    <select
-                      name="packageCategory"
-                      id="Package_Category"
-                      onChange={onChangeHandle}
-                      value={formData.packageCategory}
-                      className="bg-gray-50 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    >
-                      <option selected>Choose a Category</option>
-                      {singleCategory}
-                    </select>
-                  </div>
-                  <div className="relative z-0  mb-6 group ml-2">
-                    <label
-                      htmlFor="actvtiy"
-                      className="peer-focus:font-medium   text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Activities
-                    </label>
-                    <select
-                      name="activity"
-                      id="actvtiy"
-                      onChange={onChangeHandle}
-                      value={formData.activity}
-                      className="bg-gray-50 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    >
-                      <option selected>Choose a Activities</option>
-                      {actvityLisit}
-                    </select>
-                  </div>
-                  <div className="relative z-0  mb-6 group ml-2">
-                    <label
-                      htmlFor="priceCategory"
-                      className="peer-focus:font-medium   text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Price Category
-                    </label>
-                    <select
-                      name="priceCategory"
-                      id="priceCategory"
-                      onChange={onChangeHandle}
-                      className="bg-gray-50 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    >
-                      <option selected>Choose a price</option>
-                      <option value="Premium">Premium</option>
-                      <option value="Classic">Classic</option>
-                      <option value="Standard">Standard</option>
-                    </select>
-                  </div>
-                </div>
-
-                <h1 className="font-slab">Duration</h1>
-                <div className="grid md:grid-cols-2 md:gap-6 mt-3">
-                  <div className="relative z-0 w-full mb-6 group">
-                    <input
-                      type="number"
-                      name="day"
-                      id="day"
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      placeholder=" "
-                      required
-                      onChange={(e : React.ChangeEvent<HTMLInputElement>)=>handleChange(e)}
-                      value={durationn.day}
-                    />
-                    <label
-                      htmlFor="day"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Day
-                    </label>
-                  </div>
-
-                  <div className="relative z-0 w-full mb-6 group">
-                    <input
-                      type="number"
-                      name="night"
-                      id="night"
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                      placeholder=" "
-                      required
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>)=>handlechangeNight(e)}
-                      value={ durationn.night}
-                    />
-                    <label
-                      htmlFor="night"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Night
-                    </label>
-                  </div>
-                </div>
-                <h1 className="font-slab ">Package Services</h1>
-                <div className="grid md:grid-cols-2 mt-1 ">
-                  <div className="relative z-0 w-full mb-6 group">
-                    <input
-                      type="checkbox"
-                      name="Hotels"
-                      id="Hotels"
-                      value="Hotels"
-                      className=""
-                      placeholder=" "
-               
-                      onChange={(e:React.ChangeEvent<HTMLInputElement>)=>handleCheck(e)}
-                    />
-                    <label
-                      htmlFor="Hotels"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400  ml-3 mt-1"
-                    >
-                      Hotels
-                    </label>
-                  </div>
-                  <div className="relative z-0 w-full mb-6 group">
-                    <input
-                      type="checkbox"
-                      name="Flight"
-                      id="Flight"
-                      value="Flight"
-                      className=""
-                      placeholder=" "
-                     
-                      onChange={(e:React.ChangeEvent<HTMLInputElement>)=>handleCheck1(e)}
-                    />
-                    <label
-                      htmlFor="Flight"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 ml-3 mt-1"
-                    >
-                      Flight
-                    </label>
-                  </div>
-                  <div className="relative z-0 w-full mb-6 group">
-                    <input
-                      type="checkbox"
-                      name="Sightseeing"
-                      id="Sightseeing"
-                      value="Sightseeing"
-                      className=""
-                      placeholder=" "
-                      
-                      onChange={(e:React.ChangeEvent<HTMLInputElement>)=>handleCheck2(e)}
-                    />
-                    <label
-                      htmlFor="Sightseeing"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 ml-3 mt-1"
-                    >
-                      Sightseeing
-                    </label>
-                  </div>
-                  <div className="relative z-0 w-full mb-6 group">
-                    <input
-                      type="checkbox"
-                      name="Meals"
-                      id="Meals"
-                      value="Meals"
-                      className=""
-                      placeholder=" "
-                  
-                      onChange={(e:React.ChangeEvent<HTMLInputElement>)=>handleCheck3(e)}
-                    />
-                    <label
-                      htmlFor="Meals"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 ml-3 mt-1"
-                    >
-                      Meals
-                    </label>
-                  </div>
-                  <div className="relative z-0 w-full mb-6 group">
-                    <input
-                      type="checkbox"
-                      name="Transfers"
-                      id="Transfers"
-                      value="Transfers"
-                      className=""
-                      placeholder=" "
-                    
-                      onChange={(e:React.ChangeEvent<HTMLInputElement>)=>handleCheck4(e)}
-                    />
-                    <label
-                      htmlFor="Transfers"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 ml-3 mt-1"
-                    >
-                      Transfers
-                    </label>
-                  </div>
-                </div>
-                <button
-                  type="submit"
-                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  Submit
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
+        </NavLink>
       </div>
     </div>
   );

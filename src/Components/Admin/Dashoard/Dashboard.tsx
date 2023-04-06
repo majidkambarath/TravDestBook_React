@@ -1,41 +1,7 @@
 import React,{useEffect} from "react";
-import { RootState } from "../../../Redux/store";
-import {useSelector,useDispatch} from 'react-redux'
-import { fetchCategory } from "../../../Api/adminCategory/fetchCategory";
-import { fetchActvityAPi } from "../../../Api/adminActvity/fetchActivity";
-import {packageCategoryData} from '../../../Redux/slice/packageSlice'
-import {actvitiesStateData} from '../../../Redux/slice/actvitiesSlice'
+
 export default function Dashboard() {
-  const setpackage = useSelector((state: RootState)=> state.package.packageCategory); 
-  const setActities = useSelector((state:RootState)=>state.acitvtiy.Activity)
-  console.log(setpackage);
-  console.log(setActities);
-  const dispatch = useDispatch()
-  useEffect(()=>{
-      const fetchData = async()=>{
-        try {
-          await fetchCategory().then((res)=>{
-            dispatch(packageCategoryData(res.data.fetch))
-             
-          })
-        } catch (error) {
-          console.log(error);
-          
-        }
-      }
-      const fetchActivity =async () => {
-        try {
-          await fetchActvityAPi().then((res)=>{
-            dispatch(actvitiesStateData(res?.data.fetch))
-          })
-        } catch (error) {
-          console.log(error);
-          
-        }
-      }
-      fetchData()
-      fetchActivity()
-  },[dispatch])
+ 
   return (
     <div>
         <h1 className="font-Ariza text-2xl ml-4" >OverView</h1>
