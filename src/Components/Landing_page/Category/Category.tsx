@@ -2,7 +2,7 @@ import React from 'react'
 import './cate.css'
 export default function Category () {
   return (
-    <div className='categoryContainer bg-zinc-100  w-full md:h-[450px]  '>
+    <div className='categoryContainer bg-zinc-100  w-full md:h-[450px]'>
         <div className="Mainheading pt-10 ml-3 md:ml-9  ">
           <h1 className='Cate font-serif text-4xl '>Categories</h1>
           <h2 className='head-cate text-sm font-serif '>Holidaymakers. These people will travel to a holiday destination for a typical resort holiday</h2>

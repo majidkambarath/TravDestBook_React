@@ -1,21 +1,22 @@
-import React, { useEffect } from "react";
-import "./Destination.css";
-import NavbarBar from "../Landing_page/Navbar/Navbar";
-import Footer from "../Landing_page/Footer/Footer";
-import { fetchDestinApi } from "../../Api/admin/adminDestination/fetchData";
+import React,{useEffect} from 'react'
+import NavbarBarr from "../Landing_page/Navbar/Navbar";
+import './Package.css'
+import { useParams } from 'react-router-dom';
 import { MdOutlineFlight } from "react-icons/md";
 import { GiHotMeal } from "react-icons/gi";
 import { FaCarSide } from "react-icons/fa";
-export default function Destination() {
-  const [toggle, setToggle] = React.useState(false);
-  function handleClick() {
-    setToggle(!toggle);
-  }
-  const [fetch, setFetch] = React.useState<[]>();
+import { fetchPackageDestin } from '../../Api/user/destinationApi/packageCateApi';
+export default function Package() {
+  const {id} = useParams<any>()
+    const [toggle, setToggle] = React.useState(false);
+    function handleClick() {
+      setToggle(!toggle);
+    }
+    const [fetch, setFetch] = React.useState<[]>();
   useEffect(() => {
     const getData = async () => {
       try {
-        await fetchDestinApi().then((res) => {
+        await fetchPackageDestin(id).then((res) => {
           setFetch(res?.data.fetch);
         });
       } catch (error) {
@@ -25,25 +26,24 @@ export default function Destination() {
     getData();
   }, []);
   return (
-    <div className="Destination_main">
-      <div className="Destination_Continer">
-        <div className="Destination_head">
+    <div className="package_main">
+      <div className="package_Continer">
+        <div className="package_head">
           <div className="navbarv">
-            <NavbarBar onClick={handleClick} />
+            <NavbarBarr onClick={handleClick} />
           </div>
           <div className="flex justify-center text-4xl mt-[150px] underline text-white font-about  md:mt-[130px]">
             Destinations
           </div>
         </div>
         <div className="w-full shadow-xl drop-shadow-2xl shadow-slate-800 h-7 -mt-[29px] "></div>
-
         <div className="desText">
           <div className="ml-6 mt-2 md:mt-9">
             <h1 className="font-Yatra  font-bold text-3xl">
-              Explore The World,
+              "It's Not the Destination",
             </h1>
             <h1 className="font-Yatra  font-bold text-3xl">
-              Create New Memories
+             "It's the Journey"
             </h1>
             <div className="bg-yellow-300 h-1 rounded w-[100px]"></div>
           </div>
@@ -56,7 +56,7 @@ export default function Destination() {
               <div className=" md:md:w-[400px]  rounded-lg p-4 shadow-md drop-shadow-md shadow-indigo-300 cursor-pointer">
                 <img
                   alt="Home"
-                  src={items.file[2]}
+                  src={items.file[1]}
                   className="h-56 w-full  rounded-md object-cover transition ease-in-out delay-100 hover:-translate-h-1 hover:scale-110"
                 />
                 <div className="flex justify-between">
@@ -73,16 +73,23 @@ export default function Destination() {
                       <div>
                         <dt className="sr-only">Address</dt>
 
-                        <dd className="font-medium">{items.title}</dd>
+                        <dd className="font-medium">
+                        ${items.title}  
+                          
+                            </dd>
                       </div>
                     </dl>
                   </div>
                   <div className="mt-4 font-Yatra ">
                     Day {}
-                    <strong>{items.duration.day}</strong>
+                    <strong>
+                        {items.duration.day}
+                        </strong>
                     <div className="font-Yatra">
                       Night {}
-                      <strong>{items.duration.night}</strong>
+                      <strong>
+                        {items.duration.night}
+                        </strong>
                     </div>
                   </div>
                 </div>
@@ -177,10 +184,7 @@ export default function Destination() {
             );
           })}
         </div>
-        <div>
-          <Footer />
-        </div>
-      </div>
     </div>
-  );
+    </div>
+  )
 }

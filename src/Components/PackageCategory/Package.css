@@ -1,0 +1,7 @@
+.package_head{
+    width: 100%;
+    height: 510px;
+    background-image:url('../../Assets/p2.jpg');
+    background-size:cover;
+    background-position: center;
+}

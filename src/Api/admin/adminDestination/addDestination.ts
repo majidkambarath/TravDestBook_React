@@ -1,4 +1,4 @@
-import axios from '../../Axios/axios'
+import axios from '../../../Axios/axios'
 export const destinationApi = async(data:object,config:any)=>{
     console.log(data);
     

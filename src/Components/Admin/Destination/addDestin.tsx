@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from "react-redux";
 import { RootState } from "../../../Redux/store";
 import { destinationInterface } from "../../../Interface/destination.interface";
-import { destinationApi } from "../../../Api/adminDestination/addDestination";
+import { destinationApi } from "../../../Api/admin/adminDestination/addDestination";
 import { useNavigate } from "react-router-dom";
 export default function AddDestin() {
   const navigate = useNavigate();
@@ -93,7 +93,7 @@ export default function AddDestin() {
     const Images: File[] = [];
   
     for (let i = 0; i < files.length; i++) {
-      const file = files[i];
+      const file = files[i]; 
       if (allowedExtensions.exec(file.name)) {
        Images.push(file);
       } else {
@@ -108,6 +108,8 @@ export default function AddDestin() {
       setImageError(false);
       setImage(Images);
     }
+    console.log(imgeError);
+    
   };
   const actvityLisit = setactvity.map((items: any) => (
     <option className="text-black" value={items.activtiy} id={items.activtiy}>

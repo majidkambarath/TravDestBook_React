@@ -1,4 +1,4 @@
-import axios from "../../Axios/axios";
+import axios from "../../../Axios/axios";
 
 export const actvtiyApi = async (data: string | undefined) => {
   try {

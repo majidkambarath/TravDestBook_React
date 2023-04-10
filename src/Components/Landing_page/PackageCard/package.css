@@ -1,0 +1,19 @@
+
+.warapper::-webkit-scrollbar{
+    width: 0;
+  }
+  .warapper{
+    display: flex;
+    overflow-y: scroll;
+    margin-top: 30px;
+    margin-left: 10px;
+  }
+  .items{
+    min-width: 300px;
+    height: 300px;
+   position: relative;
+    margin-right: 4px ;
+  }
+  .textt{
+    position: absolute;
+  }

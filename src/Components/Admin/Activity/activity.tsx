@@ -1,5 +1,5 @@
 import React from 'react'
-import {actvtiyApi} from '../../../Api/adminActvity/actvtiyApi'
+import {actvtiyApi} from '../../../Api/admin/adminActvity/actvtiyApi'
 // import { activityInterface } from '../../../Interface/activity.interface';
 import DataTable from '../../../Components/Admin/DataTable/actvtityTable'
 export default function Activity() {
