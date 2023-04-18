@@ -9,6 +9,9 @@ import ServicePage from '../Pages/User/ServicePage';
 import ContactPage from '../Pages/User/ContactPage';
 import DestinationPage from '../Pages/User/DestinationPage';
 import Package from '../Pages/User/Package';
+import PackageView from '../Pages/User/PackageView';
+
+
 export default function UserRouter() {
   return (
    <Router>
@@ -22,6 +25,8 @@ export default function UserRouter() {
     <Route path='/contact' element={<ContactPage/>} />
     <Route path='/destination' element={<DestinationPage/>} />
     <Route path='/packageCategory/:id' element={<Package/>} />
+    <Route path='/destinationView/:id' element={<PackageView/>} />
+   
     </Routes>
    </Router>
   )

@@ -71,10 +71,10 @@ export default function ListDestin() {
         const result:any = fetchData.filter((item:any) => {
           console.log(item);
           
-            return item.packageCategory.toLowerCase().match(search.toLowerCase());
+            return item.packageCategory.toLowerCase().match(search);
         });
         setFilterData(result);
-    }, [search]);
+    }, [search,fetchData]);
   return (
     <DataTable 
         title={<div>

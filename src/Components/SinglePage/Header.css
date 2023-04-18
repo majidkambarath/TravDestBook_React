@@ -1,0 +1,14 @@
+.warapperr::-webkit-scrollbar{
+    width: 0;
+  }
+  .warapperr{
+    display: flex;
+    overflow-y: scroll;
+ 
+  }
+  .itemss{
+    min-width: 400px;
+    height: 300px;
+    margin-right: 4px ;
+    
+  }

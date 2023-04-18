@@ -14,7 +14,8 @@ module.exports = {
       'slab':['Josefin Slab'],
       'Nanum' : ['Nanum Myeongjo'],
       'Yatra': ['Yatra One'],
-      'Ariza':['Dancing Script']
+      'Ariza':['Dancing Script'],
+      'Asap':['Poppins']
     },
     extend: {},
   },

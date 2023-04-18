@@ -13,6 +13,7 @@ export default function HomePage() {
     <div>
       <Header/>
       <PackageCards/> 
+      <Cards/>
       <Chat/>
       <Contents/>
       <Category/>

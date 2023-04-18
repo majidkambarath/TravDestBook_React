@@ -6,27 +6,39 @@ import { fetchDestinApi } from "../../Api/admin/adminDestination/fetchData";
 import { MdOutlineFlight } from "react-icons/md";
 import { GiHotMeal } from "react-icons/gi";
 import { FaCarSide } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
+import Loader from "../Loader/Loader";
 export default function Destination() {
   const [toggle, setToggle] = React.useState(false);
   function handleClick() {
     setToggle(!toggle);
   }
   const [fetch, setFetch] = React.useState<[]>();
+  const [loader,setLoader]=React.useState<boolean>(false)
   useEffect(() => {
     const getData = async () => {
+      setLoader(true)
       try {
         await fetchDestinApi().then((res) => {
           setFetch(res?.data.fetch);
+          setLoader(false)
         });
       } catch (error) {
         console.log(error);
       }
     };
     getData();
-  }, []);
+  }, [setLoader]);
   return (
     <div className="Destination_main">
       <div className="Destination_Continer">
+        {
+          loader &&  <div className="fixed z-20 w-full h-full flex justify-center items-center  bg-black/30" >
+          <Loader/>
+         </div>
+        
+        }
+     
         <div className="Destination_head">
           <div className="navbarv">
             <NavbarBar onClick={handleClick} />
@@ -53,6 +65,7 @@ export default function Destination() {
             console.log(items);
 
             return (
+              <NavLink to={`/destinationView/${items._id}`}>
               <div className=" md:md:w-[400px]  rounded-lg p-4 shadow-md drop-shadow-md shadow-indigo-300 cursor-pointer">
                 <img
                   alt="Home"
@@ -111,6 +124,7 @@ export default function Destination() {
                           </p>
                         </div>
                       </div>
+             
                     )}
 
                     {items.packageService.Flight && (
@@ -174,6 +188,7 @@ export default function Destination() {
                   </div>
                 </div>
               </div>
+              </NavLink>
             );
           })}
         </div>

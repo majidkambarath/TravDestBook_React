@@ -24,7 +24,7 @@ export default function Package() {
       }
     };
     getData();
-  }, []);
+  }, [id]);
   return (
     <div className="package_main">
       <div className="package_Continer">

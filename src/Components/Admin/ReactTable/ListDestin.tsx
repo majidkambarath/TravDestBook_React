@@ -44,7 +44,17 @@ const columns :TableColumn<DataRow>[]= [
             <div>
                <p>{tableProps.descrption}</p>
             </div>
-        )
+        ),
+        grow:2
+    },
+    {
+        name: 'Highlights',
+        cell: (tableProps:any) =>(
+            <div>
+               <p>{tableProps.Highlights}</p>
+            </div>
+        ),
+        grow:2
     },
     
     {
@@ -79,6 +89,30 @@ const columns :TableColumn<DataRow>[]= [
                 
             </div>
         )
+    
+    },
+    {
+        name: 'Included',
+        cell: (tableProps:any) => (
+            <div>
+                <h4> {tableProps.Included}</h4>
+               
+                
+            </div>
+        ),
+        grow:2
+    
+    },
+    {
+        name: 'Excluded',
+        cell: (tableProps:any) => (
+            <div>
+                <h4> {tableProps.Excluded}</h4>
+               
+                
+            </div>
+        ),
+        grow:2
     
     },
     {
@@ -124,10 +158,10 @@ export default function ListDestin() {
     },[])
     useEffect(() => {
         const result:any = fetchData.filter((item:any) => {
-            return item.title.toLowerCase().match(search.toLowerCase());
+            return item.title.toLowerCase().match(search);
         });
         setFilterData(result);
-    }, [search]);
+    }, [search,fetchData]);
   return (
     <DataTable 
         title={<div>
