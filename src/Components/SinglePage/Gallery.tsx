@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Drawer } from "react-rainbow-components";
+import { Drawer } from "react-rainbow-components";
 const initialState = {
   isOpen: false,
   size: null,

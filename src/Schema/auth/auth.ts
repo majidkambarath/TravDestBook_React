@@ -33,4 +33,15 @@ export const signupSchema = yup.object().shape({
       .required("Confirm password can't be empty")
       .oneOf([yup.ref('password')], 'Passwords must match')
   });
-  
+  export const loginSchema = yup.object().shape({
+    email: yup
+      .string()
+      .trim()
+      .required("Enter you email")
+      .test('isvalidEmail', "Enter a valid Email", (arg) => 
+      /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(arg)),
+    password: yup
+      .string()
+      .trim()
+      .required("Password can not be empty")
+  });

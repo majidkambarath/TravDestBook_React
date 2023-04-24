@@ -8,11 +8,11 @@ const calendarContainerStyles: React.CSSProperties = {
 };
 const ExampleCalendar: React.FC = () => {
   const [state, setState] = useState(initialState);
-  const [bookedDates, setBookedDates] = useState<Date[]>([
-    new Date(2023, 3, 1),
-    new Date(2023, 3, 3),
-    new Date(2023, 3, 6),
-  ]);
+  // const [bookedDates, setBookedDates] = useState<Date[]>([
+  //   new Date(2023, 3, 1),
+  //   new Date(2023, 3, 3),
+  //   new Date(2023, 3, 6),
+  // ]);
   return (
     <div>
       <div className="rainbow-align-content_center rainbow-p-vertical_xx-large rainbow-p-horizontal_medium">
@@ -25,7 +25,7 @@ const ExampleCalendar: React.FC = () => {
             selectionType="range"
             value={state.range}
             onChange={(value:any) => setState({ range: value })}
-            disabledDays={bookedDates}
+            // disabledDays={bookedDates}
           />
         </Card>
       </div>

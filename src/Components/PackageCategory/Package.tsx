@@ -6,18 +6,23 @@ import { MdOutlineFlight } from "react-icons/md";
 import { GiHotMeal } from "react-icons/gi";
 import { FaCarSide } from "react-icons/fa";
 import { fetchPackageDestin } from '../../Api/user/destinationApi/packageCateApi';
+import Loader from "../Loader/Loader";
+import { NavLink,Link } from "react-router-dom";
 export default function Package() {
   const {id} = useParams<any>()
     const [toggle, setToggle] = React.useState(false);
+    const [loader,setLoader]=React.useState<boolean>(false)
     function handleClick() {
       setToggle(!toggle);
     }
     const [fetch, setFetch] = React.useState<[]>();
   useEffect(() => {
     const getData = async () => {
+      setLoader(true)
       try {
         await fetchPackageDestin(id).then((res) => {
           setFetch(res?.data.fetch);
+          setLoader(false)
         });
       } catch (error) {
         console.log(error);
@@ -28,6 +33,12 @@ export default function Package() {
   return (
     <div className="package_main">
       <div className="package_Continer">
+      {
+          loader &&  <div className="fixed z-20 w-full h-full flex justify-center items-center  bg-black/30" >
+          <Loader/>
+         </div>
+        
+        }
         <div className="package_head">
           <div className="navbarv">
             <NavbarBarr onClick={handleClick} />
@@ -49,10 +60,26 @@ export default function Package() {
           </div>
         </div>
         <div className=" py-6 grid grid-flow-dense md:grid-cols-3 gap-4 grid-cols-1 md:ml-7 ">
-          {fetch?.map((items: any) => {
+          
+          {!fetch?.length ? <div> 
+            <div>
+            <div className="banner bg-cover bg-center  h-auto text-white py-24 px-10 w-full">
+       <div className="md:w-1/2">
+        <p className="font-bold text-sm uppercase">Limit Offer</p>
+        <p className="text-3xl font-bold">Welcome to the world</p>
+        <p className="text-2xl mb-10 leading-none"> Explore The World</p>
+        <Link to={'/'}>
+
+        <button className='w-[100px] h-[50px] bg-yellow-300 mt-4 drop-shadow-lg font-slab font-bold'>Show Offer</button>
+        </Link>
+        </div>  
+    </div>
+            </div>
+          </div> :fetch?.map((items: any) => {
             console.log(items);
 
             return (
+              <NavLink to={`/destinationView/${items._id}`}>
               <div className=" md:md:w-[400px]  rounded-lg p-4 shadow-md drop-shadow-md shadow-indigo-300 cursor-pointer">
                 <img
                   alt="Home"
@@ -181,6 +208,7 @@ export default function Package() {
                   </div>
                 </div>
               </div>
+                </NavLink>
             );
           })}
         </div>

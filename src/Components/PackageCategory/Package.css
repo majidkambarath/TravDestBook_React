@@ -5,3 +5,7 @@
     background-size:cover;
     background-position: center;
 }
+.banner{
+    background-image:url('../../Assets/destination.webp');
+   
+}

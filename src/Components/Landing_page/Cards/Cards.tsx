@@ -1,7 +1,7 @@
 import React from 'react'
 import { MdOutlineFlight } from "react-icons/md";
 import { GiHotMeal } from "react-icons/gi";
-import { FaCarSide } from "react-icons/fa";
+// import { FaCarSide } from "react-icons/fa";
 export default function Cards() {
   return (
     <div className='card-Container bg-zinc-100 w-full md:h-[700px]'>

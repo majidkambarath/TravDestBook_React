@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 import './Register.css'
 import { BsInstagram,BsFacebook} from "react-icons/bs";
 import { SiWhatsapp} from "react-icons/si";

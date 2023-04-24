@@ -3,9 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { signupSchema } from "../../Schema/auth/auth";
 import {authSignupApi} from '../../Api/user/Auth/AuthApi'
+import {setAuthDataStore} from '../../Redux/slice/authSlice'
+import { useDispatch } from 'react-redux';
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function AuthForm() {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   return (
     <>
+   
     <Formik
         initialValues={{
           name: "",
@@ -16,8 +24,21 @@ export default function AuthForm() {
         }}
         validationSchema={signupSchema}
         onSubmit={ values => {
+          console.log(values);
+          
            authSignupApi(values).then((res)=>{
             console.log(res?.data);
+            if(res?.data.success===true){
+              dispatch(setAuthDataStore(res?.data.userData))
+              toast.success('OTP SEND ')
+               navigate('/otp')
+
+            } else if(res?.data.action===true){
+              navigate('/login')
+              
+            }
+           }).catch((error)=>{
+            console.log(error);
             
            })
           
@@ -25,8 +46,11 @@ export default function AuthForm() {
         }}
       >
         {({ errors, touched}) => (
+          
           <Form>
+           
             <div className="inputs flex flex-col ">
+          
               <label className="" htmlFor="UserName"></label>
               <Field
                 type="text"
@@ -92,11 +116,12 @@ export default function AuthForm() {
 
               <button
                type="submit"
-           
+              
                 className="bg-transparent w-1/4 shadow-lg h-8 md:w-1/6 ml-[75px] md:ml-5 mt-4    text-black font-semibold border border-black  "
               >
                 SIGN UP
               </button>
+             
             </div>
           </Form>
         )}
