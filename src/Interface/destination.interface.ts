@@ -3,6 +3,7 @@ export interface destinationInterface{
     descrption:string,
     Highlights:string,
     price:string,
+    guests:string,
     packageCategory:string,
     activity:string,
     priceCategory:string,

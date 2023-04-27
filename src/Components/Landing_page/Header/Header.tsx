@@ -1,28 +1,71 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
-import { NavLink } from "react-router-dom";
 import "./Header.css";
-const activities = [
-  "Hiking",
-  "Camping",
-  "Safari",
-  "Rock Climbing",
-  "Kayaking",
-  "Whitewater Rafting",
-  "Bungee Jumping",
-];
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../../Redux/store";
+import { fetchActvityAPi } from "../../../Api/admin/adminActvity/fetchActivity";
+import { actvitiesStateData } from "../../../Redux/slice/actvitiesSlice";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { fillterApi } from "../../../Api/user/fillterApi/fillterApi";
+import { fillterStoreData } from "../../../Redux/slice/fillterSlice";
+const validationSchema = Yup.object().shape({
+  descrption: Yup.string()
+    .matches(/^[a-zA-Z ]+$/,"Only letters are allowed")
+    .required("This field is required"),
+    guests:Yup.string()
+    .matches(/^[0-9]+$/, "Only number are allowed")
+    .required("This field is required"),
+})
+
+;
 
 export default function Header() {
+  const setActities = useSelector(
+    (state: RootState) => state.acitvtiy.Activity
+  );
+  const dispatch = useDispatch();
   const [toggle, setToggle] = React.useState(false);
   function handleClick() {
     setToggle(!toggle);
   }
+  const formik = useFormik({
+    initialValues: {
+      descrption: "",
+      activity:"",
+      priceCategory:'',
+      guests:''
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      console.log(values);
+      fillterApi(values).then((res)=>{
+      dispatch(fillterStoreData(res?.data.fillterData));
+      })
+    },
+  });
+  useEffect(() => {
+    const fetchActivity = async () => {
+      try {
+        await fetchActvityAPi().then((res) => {
+          dispatch(actvitiesStateData(res?.data.fetch));
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  const [selected, setSeleted] = React.useState<String | null>("null");
-  console.log(selected);
-  const handleSeleted = (activity: string | "null") => {
-    setSeleted(activity);
-  };
+    fetchActivity();
+  }, [dispatch]);
+  const actvityLisit = setActities.map((items: any) => (
+    <option
+      className="text-black text-lg font-Ariza "
+      value={items.activtiy}
+      id={items.activtiy}
+    >
+      {items.activtiy}
+    </option>
+  ));
   return (
     <div className="ParentContainer ">
       <div className="landingImg w-full h-[500px] md:h-[650px]">
@@ -48,7 +91,7 @@ export default function Header() {
             <h1 className=" mt-4 ml-3 block md:hidden   font-bold font-serif text-stone-900 text-sm underline underline-offset-8">
               Explore your Dream Destinations
             </h1>
-            <form action="#">
+            <form onSubmit={formik.handleSubmit}>
               <div className="inputbox mt-8 flex flex-col md:mt-[20px] md:ml-3 items-center md:flex-row  md:gap-2 gap-4">
                 <div className="spanDiv -mt-[10px] ">
                   <span className="font-serif text-xs md:block hidden  ">
@@ -61,11 +104,20 @@ export default function Header() {
                       Destinations
                     </div>
                   </span>
-
+          
                   <input
-                    className=" mainFilterinput md:w-64   w-[190px] h-8 md:hover:border-yellow-400 md:border-cyan-100 md:rounded-md cursor-pointer  md:h-[50px]  md:outline-none  bg-white outline  outline-black outline-1 placeholder-slate-700"
+                    className={` ${
+                      formik.errors.descrption && formik.touched.descrption
+                        ? "bg-red-700/80 outline-red-500 border-danger-700 "
+                        : ""
+                        }   md:w-64   w-[190px] h-8 md:hover:border-yellow-400 md:border-cyan-100 md:rounded-md cursor-pointer  md:h-[50px]  md:outline-none  bg-white outline  outline-black outline-1 placeholder-slate-700`}
                     type="text"
+                    name="descrption"
+                    id="descrption"
                     placeholder="where are you going ?"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.descrption}
                   />
                 </div>
                 <div className="spanDiv -mt-[10px] ">
@@ -80,72 +132,72 @@ export default function Header() {
                     </div>
                   </span>
 
-                  <input
-                    id="dropdownDefaultButton"
-                    data-dropdown-toggle="dropdown"
-                    className="w-[190px]  h-8  md:w-64  md:hover:border-yellow-400 md:border-cyan-100 cursor-pointer md:rounded-md md:h-[50px] md:bg-transparent md:outline-none bg-white outline outline-black outline-1  placeholder-slate-700 "
-                    type="text"
-                    // value={selected===null ? 'Actvitiys' : selected }
-                    placeholder="Activity "
-                  />
-                </div>
-                <div
-                  id="dropdown"
-                  className="z-10 hidden md:w-64 bg-white divide-y divide-gray-100 md:rounded-lg shadow w-44 drop-shadow-lg"
-                >
-                  <ul
-                    className="py-2 text-sm text-white dark:text-gray-200"
-                    aria-labelledby="dropdownDefaultButton"
+                  <select
+                    name="activity"
+                    id="activity"
+                    onChange={formik.handleChange}
+                    value={formik.values.activity}
+                    className=" md:w-64 w-[190px] h-10 md:hover:border-yellow-400 md:border-cyan-100 md:rounded-md cursor-pointer  md:h-[50px]  md:outline-none  bg-white outline  outline-black outline-1"
                   >
-                    {activities.map((activity, index) => (
-                      <li
-                        key={index}
-                        className="block px-4 py-2 md:w-48 text-md text-black hover:bg-gray-100 dark:hover:text-white"
-                      >
-                        <NavLink to="" onClick={() => handleSeleted(activity)}>
-                          {activity}
-                        </NavLink>
-                      </li>
-                    ))}
-                  </ul>
+                    <option selected>Choose a Activities</option>
+                    {actvityLisit}
+                  </select>
                 </div>
+
                 <div className="spanDiv -mt-[10px] ">
                   <span className="font-serif text-xs md:block hidden">
                     <div className="flex">
                       <img
                         className="w-[20px] h-[20px] ml-1 "
-                        src={require("../../../Assets/calendar.png")}
-                        alt="calendar_icon"
+                        src={require("../../../Assets/cash.png")}
+                        alt="cash_icon"
                       />
-                      Date
+                      Price Package
                     </div>
                   </span>
-                  <input
-                    className="w-[190px]  h-8  md:h-[50px]  md:hover:border-yellow-400 cursor-pointer md:border-cyan-100 md:rounded-md md:bg-transparent md:outline-none bg-white md:w-40 outline outline-black outline-1  placeholder-slate-700 "
-                    type="date"
-                    placeholder="Date"
-                  />
+                  <select
+                    name="priceCategory"
+                    id="priceCategory"
+                    onChange={formik.handleChange}
+                    value={formik.values.priceCategory}
+                    className="w-[190px]  h-10  md:h-[50px]  md:hover:border-yellow-400 cursor-pointer md:border-cyan-100 md:rounded-md md:bg-transparent md:outline-none bg-white md:w-40 outline outline-black outline-1  placeholder-slate-700"
+                  >
+                    <option selected>Choose a price</option>
+                    <option value="Premium">Premium</option>
+                    <option value="Classic">Classic</option>
+                    <option value="Standard">Standard</option>
+                  </select>
                 </div>
                 <div className="spanDiv -mt-[10px] ">
                   <span className="font-serif text-xs md:block hidden -mt:2">
                     <div className="flex">
-
-                    <img
-                     className="w-[20px] h-[20px] ml-1  "
-                      src={require("../../../Assets/guests.png")}
-                      alt="guest_id"
-                    />
-                    Guests
+                      <img
+                        className="w-[20px] h-[20px] ml-1  "
+                        src={require("../../../Assets/guests.png")}
+                        alt="guest_id"
+                      />
+                      Guests
                     </div>
-            
                   </span>
                   <input
                     placeholder="Guests"
-                    className="w-[190px]  h-8  md:h-[50px]  md:hover:border-yellow-400 cursor-pointer md:border-cyan-100 md:rounded-md md:bg-transparent md:outline-none bg-white md:w-40 outline outline-black outline-1  placeholder-slate-700 "
+                    name="guests"
+
+                    className={` ${
+                      formik.errors.guests && formik.touched.guests
+                        ? "bg-red-700/80 outline-red-500 border-danger-700 "
+                        : ""
+                        }   w-[190px]  h-8   md:hover:border-yellow-400 md:border-cyan-100 md:rounded-md cursor-pointer  md:h-[50px]  md:outline-none  bg-white outline  outline-black outline-1 placeholder-slate-700`}
                     type="text"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.guests}
                   />
                 </div>
-                <button className="w-1/3 h-7 bg-tansparent md:w-40  md:h-[20px]  mr-6 md:bg-transparent md:outline-none font-mono text-md outline   outline-black outline-1 ">
+                <button
+                  type="submit"
+                  className="w-1/3 h-7 bg-tansparent md:w-40  md:h-[20px]  mr-6 md:bg-transparent md:outline-none font-mono text-md outline   outline-black outline-1 "
+                >
                   FIND NOW
                 </button>
               </div>

@@ -119,8 +119,8 @@ const columns :TableColumn<DataRow>[]= [
         name: 'Action',
         selector: (row:any) => 
         <div>
-          <NavLink to={row._id}>
-          <button onClick={()=> handleEdit(row._id)} className='text-xl'> <AiFillEdit/></button>
+          <NavLink to={`/admin/edit/${row._id}`}>
+          <button  className='text-xl'> <AiFillEdit/></button>
             </NavLink>
         </div>
         
@@ -129,10 +129,7 @@ const columns :TableColumn<DataRow>[]= [
   
 ];
 
-const handleEdit = (id:string)=>{
-    console.log(id);
-    
-}
+
 
 export default function ListDestin() {
     const [fetchData,setFetchData] = React.useState<[]>([])

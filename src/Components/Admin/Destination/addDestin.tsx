@@ -21,6 +21,7 @@ export default function AddDestin() {
     descrption: "",
     Highlights: "",
     price: "",
+    guests:"",
     packageCategory: "",
     activity: "",
     priceCategory: "",
@@ -165,6 +166,7 @@ export default function AddDestin() {
     data.append("descrption", formData.descrption);
     data.append("Highlights", formData.Highlights);
     data.append("price", formData.price);
+    data.append("guests", formData.guests);
     data.append("Included1", formInclude.Included1);
     data.append("Included2", formInclude.Included2);
     data.append("Included3", formInclude.Included3);
@@ -224,8 +226,8 @@ export default function AddDestin() {
     setFormExcluded({ ...formExcluded, [name]: value });
   };
   return (
-    <div className="flex justify-center md:h-[1110px] ">
-      <div className=" md:w-2/3 md:h-[1050px] md:mt-[100px] rounded drop-shadow-xl shadow-2xl">
+    <div className="flex justify-center md:h-[1210px] ">
+      <div className=" md:w-2/3 md:h-[1150px] md:mt-[100px] rounded drop-shadow-xl shadow-2xl">
         <h1 className="font-Ariza ml-4 text-2xl underline md:hidden block">
           Add Destination
         </h1>
@@ -385,7 +387,25 @@ export default function AddDestin() {
                   </select>
                 </div>
               </div>
-
+              <h1 className="font-slab"> No:Guests</h1>
+              <div className="relative z-0 w-full mb-6 group">
+                <input
+                  type="number"
+                  name="guests"
+                  id="guests"
+                  className="block py-2.5 px-0 w-1/3 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                  required
+                  onChange={onChangeHandle}
+                  value={formData.guests}
+                />
+                <label
+                  htmlFor="guests"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >
+                   No:Guests
+                </label>
+              </div>
               <h1 className="font-slab">Duration</h1>
               <div className="grid md:grid-cols-2 md:gap-6 mt-3">
                 <div className="relative z-0 w-full mb-6 group">

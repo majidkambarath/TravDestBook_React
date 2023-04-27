@@ -5,7 +5,8 @@ import AdminActvity from '../Pages/Admin/AdminActvity';
 import AdminCate from '../Pages/Admin/AdminCate';
 import AdminDestinaton from '../Pages/Admin/AdminDestinaton';
 import Dashboard from '../Pages/Admin/Dashboard';
-import AddDestin from '../Pages/Admin/addDestin';
+import AddDestin from '../Pages/Admin/AddDestinPage';
+import EditDestinPage from '../Pages/Admin/EditDestinPage';
 export default function AdminRouter() {
   return (
     <div>
@@ -16,6 +17,7 @@ export default function AdminRouter() {
     <Route path='/admin/category' element={<AdminCate/>} />
     <Route path='/admin/actvtity' element={<AdminActvity/>} />
     <Route path='/admin/add_destination' element={<AddDestin/>} />
+    <Route path='/admin/edit/:id' element={<EditDestinPage/>} />
     </Routes>
    </Router>
     </div>

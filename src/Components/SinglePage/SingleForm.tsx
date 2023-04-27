@@ -2,10 +2,10 @@ import React from "react";
 import Calender from "./Calendar";
 import { AiOutlinePlus } from "react-icons/ai";
 import { AiOutlineMinus } from "react-icons/ai";
-export default function form() {
+export default function SingleForm() {
   return (
     <>
-      <div className=" bg-white h-[1000px] w-[400px] ml-4 -mt-[80px] rounded-md shadow-2xl drop-shadow-xl hidden md:block">
+      <div className=" bg-white h-[650px] w-[370px]   md:h-[1000px] md:w-[400px] md:ml-4 md:-mt-[80px] rounded-md shadow-2xl drop-shadow-xl ">
         <div className="py-5 px-7 ">
           <h1 className="font-Ariza text-xl ">FROM</h1>
           <h1 className="font-Ariza text-xl font-bold ml-1">$8898</h1>
@@ -22,11 +22,11 @@ export default function form() {
           <div className="border-b-2 absolute top-5 right-5 border-dashed w-1/3   "></div>
         </div>
 
-        <div className="flex justify-evenly mt-14">
-          <h1 className="font-Yatra">Booking Form </h1>
-          <h1 className="font-Yatra">Enquiry From</h1>
+        <div className="flex justify-evenly mt-14 ">
+          <h1 className="font-Yatra hidden md:block">Booking Form </h1>
+          <h1 className="font-Yatra hidden md:block">Enquiry From</h1>
         </div>
-        <div className="mt-6">
+        <div className="mt-6 hidden md:block">
           <Calender />
         </div>
         <div>

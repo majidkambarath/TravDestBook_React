@@ -18,8 +18,13 @@ export default function DestinationView() {
     <div className="w-full h-[900px]">
       <Header  />
       <div className="flex">
+        <div className="hidden md:block  ">
         <Overview  />
+        </div>
+        <div className="hidden md:block">
+
         <SingleForm />
+        </div>
       </div>
      <div className="md:hidden block">
       <Example/>
