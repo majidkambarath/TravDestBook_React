@@ -43,12 +43,11 @@ export default function EditDestin() {
 
   const setactvity = useSelector((state: RootState) => state.acitvtiy.Activity);
   const [destinQuery, setDestinQuery] = useState<destination | any>();
-  console.log(destinQuery);
   const [formData, setFormData] = useState<PackageServices | any>();
   const [imgeError, setImageError] = React.useState<boolean>(false);
   const [image, setImage] = React.useState<File[]>([]);
   const [details,setDetails]=useState<detailsState|undefined>()
-  console.log(image);
+
 
   const handleImageChange = (e: any) => {
     const files = e.target.files;

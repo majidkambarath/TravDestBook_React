@@ -5,6 +5,7 @@ import destinationID from './slice/destinIdSlice';
 import destinationSlice from './slice/destinationSlice';
 import authSlice from './slice/authSlice';
 import fillterSlice from './slice/fillterSlice';
+import currentSlice from './slice/dateSlice'
 export const store = configureStore({
     reducer:{
         package:packageSlice,
@@ -12,7 +13,8 @@ export const store = configureStore({
         destinationID:destinationID,
         destination:destinationSlice,
         authData:authSlice,
-        fillter:fillterSlice
+        fillter:fillterSlice,
+        Cdate:currentSlice
     },
 })
 

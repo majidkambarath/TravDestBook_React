@@ -7,6 +7,7 @@ import { RootState } from "../../../Redux/store";
 import {useSelector} from 'react-redux'
 import { useEffect, useState } from "react";
 import { fetchDestinApi } from "../../../Api/admin/adminDestination/fetchData";
+import { NavLink } from "react-router-dom";
 export default function Package() {
   const setFillter = useSelector((state:RootState)=>state.fillter.fillterData);
   const [destination , setDestination] = useState<object[]>([])
@@ -40,6 +41,8 @@ export default function Package() {
           {
             filterShow.map((items:any)=>{
               return(
+                <NavLink to={`/destinationView/${items._id}`}>
+
                 <div className="itemDiv md:w-[400px] w-400px  rounded-lg p-4 shadow-md drop-shadow-md shadow-indigo-300 cursor-pointer">
                 <img
                   alt="Home"
@@ -148,6 +151,7 @@ export default function Package() {
                   </div>
                 </div>
               </div>
+                </NavLink>
               )
             })
           }

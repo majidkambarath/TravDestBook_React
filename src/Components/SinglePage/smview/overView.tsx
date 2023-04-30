@@ -8,9 +8,10 @@ import {
   TabPanel,
 } from "@material-tailwind/react";
 import Overview from "../Overview";
-import ExampleCalendar from "../Calendar";
+import Calendar from "../range";
 import SingleForm from "../SingleForm";
-
+import {useDispatch} from 'react-redux'
+import { setDate } from "../../../Redux/slice/dateSlice";
 interface TabData {
   label: string;
   value: string;
@@ -19,12 +20,16 @@ interface TabData {
 
 const Example: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>("Over View");
+  const dispatch = useDispatch()
+  const DateState = (dateDay: any) => {
+    dispatch(setDate(dateDay))
+  }
 
   const data: TabData[] = [
     {
       label: "Over View",
       value: "Over View",
-      component: (
+      component:  (
         <>
           <div className="block md:hidden">
             <Overview />
@@ -37,7 +42,7 @@ const Example: React.FC = () => {
       value: "Booking Date",
       component: (
         <>
-          <ExampleCalendar />
+          <Calendar onDateRangeChange={DateState}/>
         </>
       ),
     },

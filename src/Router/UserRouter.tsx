@@ -10,6 +10,7 @@ import ContactPage from '../Pages/User/ContactPage';
 import DestinationPage from '../Pages/User/DestinationPage';
 import Package from '../Pages/User/Package';
 import PackageView from '../Pages/User/PackageView';
+import BookingDetails from '../Pages/User/BookingDetails';
 
 
 export default function UserRouter() {
@@ -26,7 +27,7 @@ export default function UserRouter() {
     <Route path='/destination' element={<DestinationPage/>} />
     <Route path='/packageCategory/:id' element={<Package/>} />
     <Route path='/destinationView/:id' element={<PackageView/>} />
-   
+    <Route path='/booking' element={<BookingDetails/>} />
     </Routes>
    </Router>
   )

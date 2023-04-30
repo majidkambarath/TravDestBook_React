@@ -1,22 +1,52 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import Header from "./Header";
 import Overview from "./Overview";
 import SingleForm from "./SingleForm";
-import { useDispatch } from "react-redux";
-import { destinationIDData } from "../../Redux/slice/destinIdSlice";
+import {useSelector, useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom';
 import Example from "./smview/overView";
-
+import { RootState } from "../../Redux/store";
+import { setDestinationData } from "../../Redux/slice/destinationSlice";
+import { destinViewApi } from "../../Api/user/destinationApi/destinView";
+import Loader from "../Loader/Loader";
 export default function DestinationView() {
+  const setDestination = useSelector(
+    (state: RootState) => state.destination.destinationsFetch
+  );
+  console.log(setDestination);
+  const [packageCategory, setPackage] = useState<string>();
+  const [activtiesData, setActivities] = useState<string>();
   const {id} = useParams<string>();
   console.log(id);
+  const [loader, setLodaer] = useState<boolean>(false);
   const dispatch = useDispatch()
   useEffect(() => {
-          dispatch(destinationIDData(id));
-  }, [id,dispatch]);
+    setLodaer(true);
+    const fetchDestination = async () => {
+      try {
+        await destinViewApi(id).then((res) => {
+          
+          dispatch(setDestinationData(res?.data.fetch));
+          setPackage(res?.data.packageCategory);
+          setActivities(res?.data.activities);
+          setLodaer(false);
+          
+          
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchDestination();
+  }, [dispatch,id]);
   return (
-    <div className="w-full h-[900px]">
-      <Header  />
+    <div className="w-full h-[950px]">
+      {loader && (
+        <div className="fixed z-20 w-full h-full flex justify-center items-center  bg-black/75">
+          <Loader />
+        </div>
+      )}
+      <Header  packageCategory={packageCategory} activtiesData={activtiesData}  />
       <div className="flex">
         <div className="hidden md:block  ">
         <Overview  />

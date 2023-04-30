@@ -1,42 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import {useSelector} from 'react-redux'
-import { destinViewApi } from '../../Api/user/destinationApi/destinView'
 import { RootState } from '../../Redux/store'
-import Loader from '../Loader/Loader'
-interface destinData {
-  descrption:string,
-  Highlights:string,
-  Included:[],
-  Excluded:[]
-}
 export default function Overview() {
-  const destinID = useSelector((state:RootState)=>state.destinationID.destinationsID)
-  const [destinData,setDestinData]=useState<destinData|null>(null)
-  const [loader,setLoader] = useState<boolean>(false)
-
-  
-  useEffect(()=>{
-    const getData = async()=>{
-      setLoader(true)
-      try {
-        await destinViewApi(destinID).then((res)=>{
-          setDestinData(res?.data.fetch)
-          setLoader(false)
-        })
-      } catch (error) {
-        console.log(error);
-        
-      }
-    }
-    getData()
-  },[destinID,setLoader])
+  const destinData = useSelector(
+    (state: RootState) => state.destination.destinationsFetch
+  );
   return (
     <>
-    {
-      loader && <div className="fixed z-20 w-full h-full flex justify-center items-center  bg-black/75" >
-      <Loader/>
-     </div>
-    }
      <div className='bg-white h-[1130px] md:h-[1000px] w-full  '>
        <h1 className='font-Ariza text-2xl  md:ml-4 font-semibold  text-sky-900'>Overview</h1>
        <div  className="w-[370px] md:w-full">

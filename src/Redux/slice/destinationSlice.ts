@@ -4,7 +4,10 @@ export interface destinationState {
   destinationsFetch: {
     title: string;
     packageCategory: string;
+    price:number;
     activity: string;
+    descrption:string,
+    Highlights:string,
     priceCategory: string;
     duration: {
       day: number;
@@ -28,7 +31,10 @@ const initialState: destinationState = {
     title: "",
     packageCategory: "",
     activity: "",
+    price:0,
     priceCategory: "",
+    descrption:"",
+    Highlights:"",
     duration: {
       day: 0,
       night: 0,

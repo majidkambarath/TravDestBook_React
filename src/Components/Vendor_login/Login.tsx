@@ -1,10 +1,14 @@
 import React from 'react'
 import './Login.css'
 import AuthLogin from '../Form/authLogin'
-import { NavLink } from 'react-router-dom'
+import { NavLink,Navigate } from 'react-router-dom'
 import GoogleSignup from './GoogleSignup'
 function Login_page() {
-  return (
+  const token = localStorage.getItem("user");
+ 
+  return token ? (
+    <Navigate to={"/"} />
+  ) : (
    <div className="parentDiv flex justify-center items-center  ">
       <div className="mainDiv flex flex-col-reverse md:flex-row bg-white h-[500px] w-3/4 rounded-lg  ">
         <div className="textDiv bg-white h-[400px] w-full   ">
