@@ -48,6 +48,7 @@ const RangeDate = ({ onDateRangeChange }: Props) => {
       onChange={handleDateRangeChange}
       moveRangeOnFirstSelection={false}
       ranges={state}
+      
     />
   );
 };

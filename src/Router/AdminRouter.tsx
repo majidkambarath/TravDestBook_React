@@ -7,6 +7,7 @@ import AdminDestinaton from '../Pages/Admin/AdminDestinaton';
 import Dashboard from '../Pages/Admin/Dashboard';
 import AddDestin from '../Pages/Admin/AddDestinPage';
 import EditDestinPage from '../Pages/Admin/EditDestinPage';
+import ChatPage from '../Pages/Admin/ChatPage';
 export default function AdminRouter() {
   return (
     <div>
@@ -16,6 +17,7 @@ export default function AdminRouter() {
     <Route path='/admin/destination' element={<AdminDestinaton/>} />
     <Route path='/admin/category' element={<AdminCate/>} />
     <Route path='/admin/actvtity' element={<AdminActvity/>} />
+    <Route path='/admin/chat' element={<ChatPage/>} />
     <Route path='/admin/add_destination' element={<AddDestin/>} />
     <Route path='/admin/edit/:id' element={<EditDestinPage/>} />
     </Routes>

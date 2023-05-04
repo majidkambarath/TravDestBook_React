@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export interface destinationState {
   
   destinationsFetch: {
+    _id:string;
     title: string;
     packageCategory: string;
     price:number;
@@ -28,6 +29,7 @@ export interface destinationState {
 const initialState: destinationState = {
     
   destinationsFetch: {
+    _id:"",
     title: "",
     packageCategory: "",
     activity: "",

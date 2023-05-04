@@ -1,6 +1,8 @@
 import axios from '../../../Axios/axios'
+import Swal from 'sweetalert2';
+import { BsExclamationCircle } from 'react-icons/bs';
 export const destinViewApi = async(id:string|undefined|null)=>{
-
+   
     try {
         const getToken = {
             headers: {
@@ -11,8 +13,22 @@ export const destinViewApi = async(id:string|undefined|null)=>{
         }
         const resData = await axios.get(`/destinationView?id=${id}`,getToken)
         return resData
-    } catch (error) {
-        console.log(error);
+    } catch (error : any) {
+        if(error.response && error.response.status === 500){
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text:'Your session has expired. Please log in again.',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#3085d6',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    localStorage.removeItem("user");
+                    window.location.href = '/login';
+                }
+            });
+         }
+        
         
     }
 }

@@ -8,6 +8,7 @@ import {useSelector} from 'react-redux'
 import { useEffect, useState } from "react";
 import { fetchDestinApi } from "../../../Api/admin/adminDestination/fetchData";
 import { NavLink } from "react-router-dom";
+import { BiRupee } from "react-icons/bi";
 export default function Package() {
   const setFillter = useSelector((state:RootState)=>state.fillter.fillterData);
   const [destination , setDestination] = useState<object[]>([])
@@ -55,7 +56,14 @@ export default function Package() {
                       <div>
                         <dt className="sr-only">Price</dt>
     
-                        <dd className="text-sm text-gray-500 font-bold">${items.price}</dd>
+                        <div className="flex ">
+                        <dd className="text-sm text-gray-500 font-bold mt-[2px]">
+                          <BiRupee/> 
+                        </dd>
+                        <dd className="text-sm text-gray-500 font-bold">
+                           {items.price}
+                        </dd>
+                        </div>
                       </div>
     
                       <div>

@@ -25,6 +25,7 @@ export default function DestinationView() {
     const fetchDestination = async () => {
       try {
         await destinViewApi(id).then((res) => {
+          console.log(res?.data);
           
           dispatch(setDestinationData(res?.data.fetch));
           setPackage(res?.data.packageCategory);

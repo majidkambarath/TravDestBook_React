@@ -5,9 +5,12 @@ import { loginSchema } from "../../Schema/auth/auth";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { authLoginApi } from "../../Api/user/Auth/AuthApi";
+
+import { setAuthDataStore } from "../../Redux/slice/authSlice";
+import { useDispatch } from "react-redux";
 export default function AuthLogin() {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch()
   return (
     <>
       <Formik
@@ -21,6 +24,7 @@ export default function AuthLogin() {
            
               if(res?.data.userData && res.data.token){
                 localStorage.setItem("user", res.data.token);
+                dispatch(setAuthDataStore(res?.data.userData))
                 navigate('/')
               }
             if(res?.data.success===false){

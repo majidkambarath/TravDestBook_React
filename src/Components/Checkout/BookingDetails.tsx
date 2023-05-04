@@ -9,14 +9,14 @@ export default function BookingDetails() {
   }
   return (
     <>
-    <div className='w-full h-[100px] bg-white'>
+    <div className='w-full md:h-[100px] bg-white'>
         <div>
         <Navbar onClick={handleClick}/>
         </div>
     </div>
-     <div className='md:flex flex mt-1'>
-       <UserDetailsForm/>
+     <div className='md:flex flex-col mt-1 md:flex-row-reverse'>
        <DestinDetails/>
+       <UserDetailsForm/>
      </div>
     </>
   )

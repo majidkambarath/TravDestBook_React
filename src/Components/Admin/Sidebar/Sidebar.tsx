@@ -19,6 +19,7 @@ const AdminNavbar = () => {
     { name: "Actvtity", link: "/admin/actvtity", icon: BsBuildingAdd },
     // { name: "Payments", link: "/", icon: AiOutlineSchedule },
     { name: "Logout", link: "/", icon: MdOutlineLogout },
+    { name: "Chat", link: "/admin/chat", icon: BsBuildingAdd },
   ];
   const [open, setOpen] = useState(true);
 

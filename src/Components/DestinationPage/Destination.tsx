@@ -4,6 +4,8 @@ import NavbarBar from "../Landing_page/Navbar/Navbar";
 import Footer from "../Landing_page/Footer/Footer";
 import { fetchDestinApi } from "../../Api/admin/adminDestination/fetchData";
 import { MdOutlineFlight } from "react-icons/md";
+import { BiRupee } from "react-icons/bi";
+
 import { GiHotMeal } from "react-icons/gi";
 import { FaCarSide } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
@@ -77,10 +79,15 @@ export default function Destination() {
                     <dl>
                       <div>
                         <dt className="sr-only">Price</dt>
-
-                        <dd className="text-sm text-gray-500 font-bold">
-                          ${items.price}
+                        <div className="flex ">
+                        <dd className="text-sm text-gray-500 font-bold mt-[2px]">
+                          <BiRupee/> 
                         </dd>
+                        <dd className="text-sm text-gray-500 font-bold">
+                           {items.price}
+                        </dd>
+                        </div>
+                        
                       </div>
 
                       <div>

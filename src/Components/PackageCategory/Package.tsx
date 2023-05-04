@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { MdOutlineFlight } from "react-icons/md";
 import { GiHotMeal } from "react-icons/gi";
 import { FaCarSide } from "react-icons/fa";
+import { BiRupee } from "react-icons/bi";
 import { fetchPackageDestin } from '../../Api/user/destinationApi/packageCateApi';
 import Loader from "../Loader/Loader";
 import { NavLink,Link } from "react-router-dom";
@@ -92,9 +93,14 @@ export default function Package() {
                       <div>
                         <dt className="sr-only">Price</dt>
 
-                        <dd className="text-sm text-gray-500 font-bold">
-                          ${items.price}
+                        <div className="flex ">
+                        <dd className="text-sm text-gray-500 font-bold mt-[2px]">
+                          <BiRupee/> 
                         </dd>
+                        <dd className="text-sm text-gray-500 font-bold">
+                           {items.price}
+                        </dd>
+                        </div>
                       </div>
 
                       <div>

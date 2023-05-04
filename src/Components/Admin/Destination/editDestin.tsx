@@ -196,7 +196,7 @@ console.log(details );
     data.append("Included1", destinQuery.Included[0]);
     data.append("Included2", destinQuery.Included[1]);
     data.append("Included3", destinQuery.Included[2]);
-    data.append("Included4", destinQuery.Included[5]);
+    data.append("Included4", destinQuery.Included[3]);
     data.append("Included5", destinQuery.Included[4]);
     data.append("Excluded1", destinQuery.Excluded[0]);
     data.append("Excluded2", destinQuery.Excluded[1]);

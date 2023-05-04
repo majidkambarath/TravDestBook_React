@@ -11,6 +11,9 @@ import DestinationPage from '../Pages/User/DestinationPage';
 import Package from '../Pages/User/Package';
 import PackageView from '../Pages/User/PackageView';
 import BookingDetails from '../Pages/User/BookingDetails';
+import Payment from '../Pages/User/Payment';
+import ChatPage from '../Pages/User/ChatPage';
+import SuccessPage from '../Pages/User/SuccessPage';
 
 
 export default function UserRouter() {
@@ -24,10 +27,13 @@ export default function UserRouter() {
     <Route path='/about' element={<AboutPage/>} />
     <Route path='/service' element={<ServicePage/>} />
     <Route path='/contact' element={<ContactPage/>} />
+    <Route path='/chat' element={<ChatPage/>} />
     <Route path='/destination' element={<DestinationPage/>} />
     <Route path='/packageCategory/:id' element={<Package/>} />
     <Route path='/destinationView/:id' element={<PackageView/>} />
     <Route path='/booking' element={<BookingDetails/>} />
+    <Route path='/payment' element={<Payment/>} />
+    <Route path='/success' element={<SuccessPage/>} />
     </Routes>
    </Router>
   )
