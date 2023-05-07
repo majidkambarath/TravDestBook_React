@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import Navbar from "../Navbar/Navbar";
+// import Navbar from "../Navbar/Navbar";
 import "./Header.css";
+import NewNav from '../../Navbar/Navbar'
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../Redux/store";
 import { fetchActvityAPi } from "../../../Api/admin/adminActvity/fetchActivity";
@@ -19,16 +20,28 @@ const validationSchema = Yup.object().shape({
 })
 
 ;
-
 export default function Header() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const fetchActivity = async () => {
+      try {
+        await fetchActvityAPi().then((res) => {
+          dispatch(actvitiesStateData(res?.data.fetch));
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchActivity();
+
+  }, [dispatch]);
   const setActities = useSelector(
     (state: RootState) => state.acitvtiy.Activity
   );
-  const dispatch = useDispatch();
-  const [toggle, setToggle] = React.useState(false);
-  function handleClick() {
-    setToggle(!toggle);
-  }
+
+
+
+
   const formik = useFormik({
     initialValues: {
       descrption: "",
@@ -44,19 +57,7 @@ export default function Header() {
       })
     },
   });
-  useEffect(() => {
-    const fetchActivity = async () => {
-      try {
-        await fetchActvityAPi().then((res) => {
-          dispatch(actvitiesStateData(res?.data.fetch));
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchActivity();
-  }, [dispatch]);
+ 
   const actvityLisit = setActities.map((items: any) => (
     <option
       className="text-black text-lg font-Ariza "
@@ -68,13 +69,14 @@ export default function Header() {
   ));
   return (
     <div className="ParentContainer ">
-      <div className="landingImg w-full h-[500px] md:h-[650px]">
+      <div className="landingImg w-full h-[500px] md:h-[650px] relative">
         <div className="navbarv">
-          <Navbar onClick={handleClick} />
+        <NewNav  />
+          {/* <Navbar onClick={handleClick} /> */}
         </div>
-        {toggle || (
-          <div className="textContainer flex flex-col justify-center items-center mt-[10px]  ">
-            <h3 className="mainText text-white text-4xl mt-3 ">
+     
+          <div className="textContainer flex flex-col justify-center items-center  pt-14">
+            <h3 className="mainText text-white text-4xl md:mt-0  mt-10 ">
               Welcome To TraVio.
             </h3>
             <h2 className="subText  text-white text-2xl mt-6">
@@ -85,7 +87,7 @@ export default function Header() {
               BOOK NOW
             </button>
           </div>
-        )}
+        
         <div className="filterContainer items-center flex justify-center mt-2 md:mt-[50px] overflow-hidden">
           <div className="filterDiv bg-white overflow-hidden shadow-sm ite h-[300px] w-3/4 rounded-lg drop-shadow-xl md:h-[100px] ">
             <h1 className=" mt-4 ml-3 block md:hidden   font-bold font-serif text-stone-900 text-sm underline underline-offset-8">

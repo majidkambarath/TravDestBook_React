@@ -1,22 +1,19 @@
 import React from 'react'
 import Footer from '../Landing_page/Footer/Footer';
-import NavbarBar from '../Landing_page/Navbar/Navbar'
+import NavbarBar from '../Navbar/Navbar'
 import './About.css'
-
+import Chat from '../Landing_page/Chat/Chat';
 export default function AboutPage () {
-  const [toggle, setToggle] = React.useState(false);
-  function handleClick() {
-    setToggle(!toggle);
-  }
+ 
   return (
-    <div className="aboutParent h-[550px]  ">
-    <div className='aboutContainer '>
-       <div className="aboutImg">
+    <div className="aboutParent h-[550px]   ">
+    <div className='aboutContainer relative '>
+       <div className="aboutImg ">
         <div className="navbarv">
-        <NavbarBar onClick={handleClick}/>
+        <NavbarBar/>
         </div>
         
-            <div className='flex justify-center text-4xl mt-[150px] underline text-white font-about  md:mt-[130px]'>
+            <div className='flex justify-center text-4xl pt-[150px] md:pt-0 underline text-white font-about  md:mt-[130px]'>
               About Us
               </div>
        </div>
@@ -89,6 +86,11 @@ export default function AboutPage () {
     <div className='mt-4'>
       <Footer/>
     </div>
+    <div className="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
+        <div>
+        <Chat/>
+   </div>
+</div>
     </div>
   )
 }

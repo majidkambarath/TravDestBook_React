@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { loginSchema } from "../../Schema/auth/auth";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
 import { authLoginApi } from "../../Api/user/Auth/AuthApi";
 
@@ -25,6 +25,7 @@ export default function AuthLogin() {
               if(res?.data.userData && res.data.token){
                 localStorage.setItem("user", res.data.token);
                 dispatch(setAuthDataStore(res?.data.userData))
+                toast.success('Login Succuess')
                 navigate('/')
               }
             if(res?.data.success===false){

@@ -11,11 +11,12 @@ type props ={
 const ExampleCalendar = ({DatePikker}: props) => {
 
   const [state, setState] = useState(initialState);
+  
   const dates = state.range.map((date) => date.toISOString().split('T')[0]);
   const daysOfWeek = state.range.map((date) => date.toLocaleDateString('en-US', { weekday: 'long' }));
   const dateDay = { dates, daysOfWeek };
   
-  return (
+  return ( 
     <div>
       <div className="rainbow-align-content_center rainbow-p-vertical_xx-large rainbow-p-horizontal_medium">
         <Card

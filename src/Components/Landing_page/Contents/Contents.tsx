@@ -1,5 +1,6 @@
 import React from 'react'
 import './Content.css'
+import Chat from '../Chat/Chat'
 export default function Contents() {
   return (
     <div className='ContentContainer w-full   '>
@@ -18,6 +19,11 @@ export default function Contents() {
           </div>
         </div>
         </div>
+        <div className="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
+        <div>
+        <Chat/>
+   </div>
+</div>
     </div>
 
   )

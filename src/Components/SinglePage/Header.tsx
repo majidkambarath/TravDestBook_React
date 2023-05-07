@@ -1,5 +1,5 @@
 import React from "react";
-import NavbarBar from "./Navbar";
+import NavbarBar from "../Navbar/NewNavbar";
 import "./Header.css";
 import { GiMoneyStack } from "react-icons/gi";
 import { GiDuration } from "react-icons/gi";
@@ -16,10 +16,7 @@ export default function Header({
   packageCategory,
   activtiesData,
 }: HeaderProps) {
-  const [toggle, setToggle] = React.useState(false);
-  function handleClick() {
-    setToggle(!toggle);
-  }
+ 
   const setDestination = useSelector(
     (state: RootState) => state.destination.destinationsFetch
   );
@@ -27,12 +24,12 @@ export default function Header({
   return (
     <>
       <div className="viewHead ">
-        <div className="bg-sky-100 w-full h-[630px]">
+        <div className="bg-sky-100 w-full h-[630px] relative">
           <div>
-            <NavbarBar onClick={handleClick} />
+            <NavbarBar  />
           </div>
           <div className="flex justify-between">
-            <div className="md:py-8 py-5 md:px-8 px-5 md:mt-0 mt-4">
+            <div className="md:py-8 py-5 md:px-8 px-5 md:mt-0  pt-20  md:pt-5">
               <h1 className="font-Yatra md:text-2xl text-xl underline">
                 {setDestination.title}
                 <span className="font-Ariza md:text-2xl text-xl">
@@ -41,7 +38,7 @@ export default function Header({
                 </span>
               </h1>
             </div>
-            <div className=" md:mr-[100px] mt-7 mr-4 ">
+            <div className=" md:mr-[100px] pt-20  md:pt-5 mr-4 ">
               <Gallery />
             </div>
           </div>

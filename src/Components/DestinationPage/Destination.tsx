@@ -1,20 +1,17 @@
 import React, { useEffect } from "react";
 import "./Destination.css";
-import NavbarBar from "../Landing_page/Navbar/Navbar";
+import NavbarBar from '../Navbar/Navbar'
 import Footer from "../Landing_page/Footer/Footer";
 import { fetchDestinApi } from "../../Api/admin/adminDestination/fetchData";
 import { MdOutlineFlight } from "react-icons/md";
 import { BiRupee } from "react-icons/bi";
-
+import Chat from "../Landing_page/Chat/Chat";
 import { GiHotMeal } from "react-icons/gi";
 import { FaCarSide } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import Loader from "../Loader/Loader";
 export default function Destination() {
-  const [toggle, setToggle] = React.useState(false);
-  function handleClick() {
-    setToggle(!toggle);
-  }
+ 
   const [fetch, setFetch] = React.useState<[]>();
   const [loader,setLoader]=React.useState<boolean>(false)
   useEffect(() => {
@@ -33,7 +30,7 @@ export default function Destination() {
   }, [setLoader]);
   return (
     <div className="Destination_main">
-      <div className="Destination_Continer">
+      <div className="Destination_Continer relative">
         {
           loader &&  <div className="fixed z-20 w-full h-full flex justify-center items-center  bg-black/30" >
           <Loader/>
@@ -43,9 +40,9 @@ export default function Destination() {
      
         <div className="Destination_head">
           <div className="navbarv">
-            <NavbarBar onClick={handleClick} />
+            <NavbarBar />
           </div>
-          <div className="flex justify-center text-4xl mt-[150px] underline text-white font-about  md:mt-[130px]">
+          <div className="flex justify-center text-4xl pt-[150px] md:pt-0  underline text-white font-about  md:mt-[130px]">
             Destinations
           </div>
         </div>
@@ -203,6 +200,11 @@ export default function Destination() {
           <Footer />
         </div>
       </div>
+      <div className="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
+        <div>
+        <Chat/>
+   </div>
+</div>
     </div>
   );
 }

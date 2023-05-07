@@ -3,25 +3,25 @@ import { Link } from 'react-router-dom';
 
 const SuccessPage = () => {
   return (
-    <div className="bg-gray-100 h-screen">
-      <div className="bg-white p-6 md:mx-auto">
-        <svg viewBox="0 0 24 24" className="text-green-600 w-16 h-16 mx-auto my-6">
-            <path fill="currentColor"
-                d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z">
-            </path>
-        </svg>
-        <div className="text-center">
-            <h3 className="md:text-2xl text-base text-gray-900 font-semibold text-center">Payment Done!</h3>
-            <p className="text-gray-600 my-2">Thank you for completing your secure online payment.</p>
-            <p> Have a great day!  </p>
-            <div className="py-10 text-center">
-                <Link to="/" className="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3">
-                    GO BACK 
-               </Link>
-            </div>
-        </div>
+    <>
+    <div className="bg-white h-screen w-full flex justify-center items-center">
+    <div className='w-[700px] h-[350px] -mt-[150px] md:ml-[100px]'>
+      <h1 className='z-50 md:text-[150px] text-[80px] font-Ariza absolute mt-[110px] ml-5 md:-ml-[30px] text-black/20 '>Thank You </h1>
+      <img className=' md:w-[500px] md:h-[350px] w-[440px] h-[300px] relative md:ml-10 ' src={require('../../Assets/s1.jpg')} alt="succuss_img" />
+      <div> 
+    <h1 className='font-Yatra md:text-3xl text-2xl md:ml-[100px] ml-[60px] '>Your Payment is Successfull</h1>
+    <h1 className='font-Nanum text-xs md:text-sm'>
+    Thank you for your payment. An automated payment receipt will be sent to your registered email
+    </h1>
+    <Link to={'/profile'}>
+
+    <button className='font-Asap md:w-1/5 w-1/3  h-9 bg-fuchsia-300 md:ml-[200px] ml-[150px] mt-4 rounded drop-shadow-2xl  cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300' >Booking Details</button>
+    </Link>
       </div>
     </div>
+    
+    </div>
+    </>
   );
 };
 

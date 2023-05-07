@@ -1,0 +1,45 @@
+.slider-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 550px;
+    width: 100%;
+    background-color: #ffffff;
+  }
+  
+  .tab-slider {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .tab {
+    cursor: pointer;
+    margin: 10px 0;
+    padding: 10px;
+    width: 150px;
+    border-bottom: 2px solid #aab5c2;;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+   
+  }
+  
+  .tab.active {
+    border-bottom: 2px solid #aab5c2;
+  }
+  
+  .tab-content {
+    flex: 1;
+    height: 100%;
+    margin-left: 100px;
+  }
+  
+  .tab-pane {
+    display: none;
+  }
+  
+  .tab-pane.active {
+    display: block;
+  }
+  

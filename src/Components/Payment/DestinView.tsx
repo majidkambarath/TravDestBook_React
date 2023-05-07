@@ -30,12 +30,7 @@ export default function DestinView() {
   const newendDate = new Date(dateState.endDate);
   newendDate.setDate(newendDate.getDate() + 1);
   const endDate = newendDate.toISOString().split("T")[0];
-  const StartDay = dateState.startDate.toLocaleDateString("en-US", {
-    weekday: "long",
-  });
-  const endDay = dateState.endDate.toLocaleDateString("en-US", {
-    weekday: "long",
-  });
+ 
   const adultCount = useSelector(
     (state: RootState) => state.passenger.adultCount
   );
@@ -75,13 +70,15 @@ export default function DestinView() {
       name: "Language translate ",
     },
   ]);
+  console.log(setIncludeService);
+  
 
   return (
     <>
-      <div className="bg-gray-100 w-full h-[670px]">
+      <div className="bg-gray-100  md:h-[670px] ">
         <div className="items-center">
-          <div className="flex mt-11 ">
-            <div className="w-[300px]">
+          <div className="flex md:mt-11 ">
+            <div className="md:w-[300px]">
             <h1 className="font-Yatra text-lg underline ml-[100px]">
               {destinData.title}
             </h1>
@@ -97,7 +94,7 @@ export default function DestinView() {
           <div className="w-[450px] h-[300px] ml-[100px] mt-2 ">
             <img
               className="w-[450px] h-[300px] rounded drop-shadow-xl shadow-md"
-              src={require("../../Assets/bg.jpg")}
+              src={destinData.file[0]}
               alt="destin_picture"
             />
           </div>
@@ -109,7 +106,7 @@ export default function DestinView() {
               </span>
               Booking Date :
               <span className="text-sm font-mono font-bold ml-2 mt-1">
-              {startDate} [{StartDay}]
+              {startDate} 
               </span>
             </li>
             <li className="font-Yatra flex">
@@ -118,7 +115,7 @@ export default function DestinView() {
               </span>
               Arrived Date :
               <span className="text-sm font-mono font-bold ml-2 mt-1">
-              {endDate} [{endDay}]
+              {endDate} 
               </span>
             </li>
 

@@ -1,22 +1,21 @@
 import React from 'react'
 import './Contact.css'
-import Navbar from '../Landing_page/Navbar/Navbar'
+import Navbar from '../Navbar/Navbar'
 import Footer from '../Landing_page/Footer/Footer';
+import Chat from '../Landing_page/Chat/Chat'
 export default function Contact() {
-    const [toggle, setToggle] = React.useState(false);
-    function handleClick() {
-      setToggle(!toggle);
-    }
+ 
   return (
-    <div className='Contacts_main'>
+    <div className='Contacts_main relative'>
         <div className='Contacts_img'>
         <div className="navbarv">
-        <Navbar onClick={handleClick}/>
+        <Navbar />
         </div>
-        <div className='flex justify-center text-4xl mt-[150px] underline text-white font-about  md:mt-[130px]'>
+        <div className='flex justify-center text-4xl py-[150px] md:py-0  underline text-white font-about  md:mt-[130px]'>
               Contacts
               </div>
         </div>
+        
         <div className="w-full shadow-xl drop-shadow-2xl shadow-slate-800 h-7 -mt-[29px] "></div>
               <div className='Contact_container  md:h-[500px] flex md:flex-row flex-col'>
                 <div className="contact_text md:pl-[100px] mt-10">
@@ -70,11 +69,17 @@ export default function Contact() {
                     </div>
                 </div>
               </div>
+             
+              
               <div className='mt-6'>
 
               <Footer/>
               </div>
-
+              <div className="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
+        <div>
+        <Chat/>
+   </div>
+</div>
     </div>
   )
 }

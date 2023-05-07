@@ -1,6 +1,5 @@
 import axios from '../../../Axios/axios'
 import Swal from 'sweetalert2';
-import { BsExclamationCircle } from 'react-icons/bs';
 export const destinViewApi = async(id:string|undefined|null)=>{
    
     try {
@@ -28,7 +27,6 @@ export const destinViewApi = async(id:string|undefined|null)=>{
                 }
             });
          }
-        
         
     }
 }

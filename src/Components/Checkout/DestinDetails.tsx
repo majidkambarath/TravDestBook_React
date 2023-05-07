@@ -13,8 +13,9 @@ export default function DestinDetails() {
   const newendDate = new Date(dateState.endDate)
   newendDate.setDate(newendDate.getDate() + 1)
   const endDate = newendDate.toISOString().split('T')[0]
-  const StartDay = dateState.startDate.toLocaleDateString('en-US', { weekday: 'long' })
-  const endDay = dateState.endDate.toLocaleDateString('en-US', { weekday: 'long' })
+
+
+  // const StartDay = 'sunday'
   const adultCount = useSelector((state:RootState)=>state.passenger.adultCount)
   const childCount = useSelector((state:RootState)=>state.passenger.childCount)
   const infantCount = useSelector((state:RootState)=>state.passenger.infantCount)
@@ -71,11 +72,11 @@ export default function DestinDetails() {
           <div className="md:px-16 md:ml-8 md:-mt-3 ">
             <div className="flex">
             <h1 className="font-slab text-md mt-5 ml-2">Booking Date :  </h1>
-            <h1 className="font-slab text-md mt-5 ml-2"> {startDate} [{StartDay}]  </h1>
+            <h1 className="font-slab text-md mt-5 ml-2"> {startDate}   </h1>
             </div>
             <div className="flex -mt-4">
             <h1 className="font-slab text-md mt-5 ml-2">Arrived Date :  </h1>
-            <h1 className="font-slab text-md mt-5 ml-2"> {endDate} [{endDay}]  </h1>
+            <h1 className="font-slab text-md mt-5 ml-2"> {endDate}   </h1>
             </div>
             </div>
             <div className="md:px-16 md:ml-8 md:-mt-2 ">

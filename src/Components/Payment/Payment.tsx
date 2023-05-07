@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { BiRupee } from "react-icons/bi";
 import { RootState } from "../../Redux/store";
-import { useSelector } from "react-redux";
+import { useSelector , useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { resetPassengerCount } from "../../Redux/slice/passengerSlice";
+import { resetSelectedServices } from "../../Redux/slice/extraService";
 import { paymentApi, paymentSuccessApi } from "../../Api/user/bookingApi/bookingApi";
 declare global {
   interface Window {
@@ -11,6 +13,8 @@ declare global {
 }
 export default function PaymentPage() {
   const userData = useSelector((state: RootState) => state.authData.authData);
+
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const TotalPrice = useSelector(
     (state: RootState) => state.extraServiceSlice.totalPrice
@@ -26,13 +30,9 @@ export default function PaymentPage() {
   const startDate = newStartDate.toISOString().split("T")[0];
   const newendDate = new Date(dateState.endDate);
   newendDate.setDate(newendDate.getDate() + 1);
-  const endDate = newendDate.toISOString().split("T")[0];
-  const StartDay = dateState.startDate.toLocaleDateString("en-US", {
-    weekday: "long",
-  });
-  const endDay = dateState.endDate.toLocaleDateString("en-US", {
-    weekday: "long",
-  });
+   const endDate = newendDate.toISOString().split("T")[0];
+  
+
   const adultCount = useSelector(
     (state: RootState) => state.passenger.adultCount
   );
@@ -78,6 +78,7 @@ export default function PaymentPage() {
           description: "Payment for your service",
           image: 'https://i.pinimg.com/originals/2e/cf/73/2ecf7364cd78b7222311518159a72179.jpg',
           handler: async function (response: any) {
+        
             const paymentData = {
               orderCreationId: data.order.id,
               razorpayPaymentId: response.razorpay_payment_id,
@@ -87,9 +88,7 @@ export default function PaymentPage() {
               destinId : destinData?._id,
               Participants :TotalGuest,
               Arrived : endDate ,
-              ArrivedDay : endDay ,
               BookingData : startDate,
-              BookingDay : StartDay,
               ExtraService : ServiceRedux,
               SubTotal : subTotal,
               Title : destinData?.title,
@@ -97,10 +96,14 @@ export default function PaymentPage() {
               priceCate : destinData?.priceCategory,
            
             };
+           
             try {
                const result = await paymentSuccessApi(paymentData)
+              
                console.log(result?.data);
                if(result?.data.success===true){
+                dispatch(resetPassengerCount())
+                dispatch(resetSelectedServices())
                 navigate('/success')
                }
               
@@ -112,7 +115,7 @@ export default function PaymentPage() {
             console.log(paymentData);
           },
           prefill: {
-            name: userData?.username,
+            name: userData?.name,
             email: userData?.email,
             contact: userData?.phone ,
           },
@@ -133,7 +136,8 @@ export default function PaymentPage() {
 
   return (
     <>
-      <div className="bg-white w-[1000px] h-[670px]">
+      <div className="bg-white ">
+      
         <h1 className="font-Yatra text-xl py-7 px-7 font-bold underline">
           Payment Details
         </h1>

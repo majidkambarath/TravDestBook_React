@@ -44,9 +44,13 @@ export default function SingleForm() {
   newendDate.setDate(newendDate.getDate() + 1)
   const endDate = newendDate.toISOString().split('T')[0]
   // const endDate = dateState.endDate.toISOString().split('T')[0] 
-  const StartDay = dateState.startDate.toLocaleDateString('en-US', { weekday: 'long' })
-  const endDay = dateState.endDate.toLocaleDateString('en-US', { weekday: 'long' })
-  console.log(startDate,endDate,StartDay,endDay);
+  // const StartDay = dateState.startDate.toLocaleDateString('en-US', { weekday: 'long' })
+  // const endDay = dateState.endDate.toLocaleDateString('en-US', { weekday: 'long' })
+  // const StartDay: string = dateState.startDate.toLocaleDateString('en-US', { weekday: 'long' });
+  // const endDay: string = dateState.endDate.toLocaleDateString('en-US', { weekday: 'long' });
+
+
+  console.log(startDate,endDate);
   
 
   const DateState = (dateDay: any) => {
@@ -140,8 +144,8 @@ export default function SingleForm() {
             <div className="gap-3 mt-2 h-[170px] md:w-[350px] w-[330px] bg-zinc-100/80">
                <h1 className="font-Yatra underline"> Tickets ( {destinData.priceCategory})</h1>
               <h1  className="font-Yatra text-lg font-bold ">Date</h1>
-              <h1 className="font-Yatra">Booking Date : {startDate} [{StartDay}]</h1>
-              <h1 className="font-Yatra mt-2">Arrived Date : {endDate} [{endDay}]</h1>
+              <h1 className="font-Yatra">Booking Date : {startDate} </h1>
+              <h1 className="font-Yatra mt-2">Arrived Date : {endDate} </h1>
               <div>
                 <NavLink to={`/booking`}>
 

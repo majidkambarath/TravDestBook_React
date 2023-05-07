@@ -1,20 +1,17 @@
 import React from 'react'
-import Navbar from '../SinglePage/Navbar'
+import Navbar from "../Navbar/NewNavbar"
 import UserDetailsForm from './UserDetailsForm';
 import DestinDetails from './DestinDetails';
 export default function BookingDetails() {
-    const [toggle, setToggle] = React.useState(false);
-  function handleClick() {
-    setToggle(!toggle);
-  }
+
   return (
     <>
-    <div className='w-full md:h-[100px] bg-white'>
+    <div className='w-full md:h-[100px] bg-white relative '>
         <div>
-        <Navbar onClick={handleClick}/>
+        <Navbar />
         </div>
     </div>
-     <div className='md:flex flex-col mt-1 md:flex-row-reverse'>
+     <div className='md:flex flex-col mt-1 md:flex-row-reverse md:pt-10 pt-16 '>
        <DestinDetails/>
        <UserDetailsForm/>
      </div>

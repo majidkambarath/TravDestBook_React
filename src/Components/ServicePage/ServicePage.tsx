@@ -1,20 +1,18 @@
 import React from 'react'
 import Footer from '../Landing_page/Footer/Footer';
-import NavbarBa from '../Landing_page/Navbar/Navbar'
+import NavbarBa from '../Navbar/Navbar'
 import './Service.css'
+import Chat from '../Landing_page/Chat/Chat';
 export default function ServicePage() {
-  const [toggle, setToggle] = React.useState(false);
-  function handleClick() {
-    setToggle(!toggle);
-  }
+ 
   return (
     <div className='servicePerent '>
-    <div className='serviceContainer '>
+    <div className='serviceContainer relative '>
       <div className='serviceImg'>
         <div className="navbarv">
-        <NavbarBa onClick={handleClick}/>
+        <NavbarBa />
         </div>
-        <div className='flex justify-center text-4xl mt-[150px] underline text-white font-about  md:mt-[150px]'>
+        <div className='flex justify-center text-4xl pt-[150px] md:pt-0 underline text-white font-about  md:mt-[150px]'>
               Services
               </div>
         
@@ -117,6 +115,11 @@ export default function ServicePage() {
 
     </div>
     <Footer/>
+    <div className="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
+        <div>
+        <Chat/>
+   </div>
+</div>
     </div>
   )
 }

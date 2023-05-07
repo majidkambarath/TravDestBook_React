@@ -9,7 +9,7 @@ interface ExtraService {
 interface ExtraServiceState {
   services: ExtraService[];
   selectedServices: ExtraService[];
-  totalPrice:number;
+  totalPrice: number;
 }
 
 const initialState: ExtraServiceState = {
@@ -36,23 +36,27 @@ const extraServiceSlice = createSlice({
   initialState,
   reducers: {
     addService: (state, action) => {
-        // const { name, price } = action.payload;
-        // console.log(typeof(price));
+      // const { name, price } = action.payload;
+      // console.log(typeof(price));
       state.selectedServices.push(action.payload);
       state.totalPrice += action.payload.price;
     },
     removeService: (state, action) => {
-        console.log(state.selectedServices);
-        
-        
-          state.selectedServices = state.selectedServices.filter(
-            (service) => service.name !== action.payload.name
-          );
-          state.totalPrice -= action.payload.price;
-    }
+      console.log(state.selectedServices);
+
+      state.selectedServices = state.selectedServices.filter(
+        (service) => service.name !== action.payload.name
+      );
+      state.totalPrice -= action.payload.price;
+    },
+    resetSelectedServices: (state) => {
+      state.services = initialState.services;
+      state.totalPrice = initialState.totalPrice;
+    },
   },
 });
 
-export const { addService, removeService } = extraServiceSlice.actions;
+export const { addService, removeService, resetSelectedServices } =
+  extraServiceSlice.actions;
 
 export default extraServiceSlice.reducer;
