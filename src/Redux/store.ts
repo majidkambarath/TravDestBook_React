@@ -13,6 +13,7 @@ import passengerDetailsReducer from './slice/passengerSlice';
 import extraService from './slice/extraService';
 import bookingSlice from './slice/bookingDetailsSlice'
 import bookingInvoice from './slice/bookingIvoice'
+import authChatID from './slice/chatUserId'
 const persistConfig = {
   key: 'root',
   version: 1,
@@ -30,7 +31,8 @@ const rootReducer = combineReducers({
   passenger: passengerDetailsReducer,
   extraServiceSlice: extraService,
   bookingdetails:bookingSlice,
-  bookingShow:bookingInvoice
+  bookingShow:bookingInvoice,
+  authChatId :authChatID
 });
 
 

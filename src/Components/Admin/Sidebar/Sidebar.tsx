@@ -1,25 +1,31 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdOutlineDashboard } from "react-icons/md";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { GrMapLocation } from "react-icons/gr";
+import { BsFillChatDotsFill } from "react-icons/bs";
 import { BsBuildingAdd } from "react-icons/bs";
-// +
-
 import { MdOutlineLogout } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const AdminNavbar = () => {
+
+  const navigate = useNavigate()
+
+
   const menus = [
     { name: "Dashboard", link: "/admin/dashboard", icon: MdOutlineDashboard },
-    { name: "User", link: "/", icon: AiOutlineUsergroupAdd },
+    { name: "User", link: "/admin/user", icon: AiOutlineUsergroupAdd },
     { name: "Destination ", link: "/admin/destination", icon: GrMapLocation },
     { name: "Category", link: "/admin/category", icon: BsBuildingAdd },
     { name: "Actvtity", link: "/admin/actvtity", icon: BsBuildingAdd },
-    // { name: "Payments", link: "/", icon: AiOutlineSchedule },
-    { name: "Logout", link: "/", icon: MdOutlineLogout },
-    { name: "Chat", link: "/admin/chat", icon: BsBuildingAdd },
+    { name: "Chat", link: "/admin/chat", icon: BsFillChatDotsFill },
+    { name: "Logout", link:'/admin/login',icon: MdOutlineLogout , onClick: ()=>{
+localStorage.removeItem("admin");
+navigate("/admin/login");
+    } },
   ];
   const [open, setOpen] = useState(true);
 
@@ -65,6 +71,7 @@ const AdminNavbar = () => {
             <Link
               to={menu?.link}
               key={i}
+              onClick={menu?.onClick}
               className=" group flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-green-200 rounded-2xl"
             >
               <div>{React.createElement(menu?.icon, { size: "20" })}</div>

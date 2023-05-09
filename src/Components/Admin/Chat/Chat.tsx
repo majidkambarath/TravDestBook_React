@@ -7,12 +7,15 @@ export default function ChatPage() {
     <>
       <div className="flex h-screen antialiased text-gray-800">
         <div className="flex flex-row h-full w-full overflow-x-hidden">
-          <div>
+          <div className=" md:flex">
+            <div >
             <Converstion />
+            </div>
+            <div className="md:w-full md:h-full w-[300px] h-[400px]">
+            <Message  />
+            </div>
           </div>
-          <div>
-            <Message />
-          </div>
+         
         </div>
       </div>
     </>

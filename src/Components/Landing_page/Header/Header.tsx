@@ -58,7 +58,7 @@ export default function Header() {
     },
   });
  
-  const actvityLisit = setActities.map((items: any) => (
+  const actvityLisit = setActities?.map((items: any) => (
     <option
       className="text-black text-lg font-Ariza "
       value={items.activtiy}
