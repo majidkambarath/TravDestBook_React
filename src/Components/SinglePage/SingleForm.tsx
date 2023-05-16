@@ -142,7 +142,7 @@ export default function SingleForm() {
           <div className="mt-6 ml-7">
             <h1 className="font-Yatra text-2xl font-semibold">2. Booking Summary</h1>
             <div className="gap-3 mt-2 h-[170px] md:w-[350px] w-[330px] bg-zinc-100/80">
-               <h1 className="font-Yatra underline"> Tickets ( {destinData.priceCategory})</h1>
+               <h1 className="font-Yatra underline"> Tickets ( {destinData?.priceCategory})</h1>
               <h1  className="font-Yatra text-lg font-bold ">Date</h1>
               <h1 className="font-Yatra">Booking Date : {startDate} </h1>
               <h1 className="font-Yatra mt-2">Arrived Date : {endDate} </h1>

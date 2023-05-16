@@ -25,14 +25,16 @@ export default function AuthLogin() {
               if(res?.data.userData && res.data.token){
                 localStorage.setItem("user", res.data.token);
                 dispatch(setAuthDataStore(res?.data.userData))
-                toast.success('Login Succuess')
+                toast.success('Welcome')
                 navigate('/')
               }
             if(res?.data.success===false){
               toast.error('Password Not Matching')
 
-            } else if (res?.data.action===false){
+            } if (res?.data.action===false){
                 toast.error('Invalid Credentials')
+            } else if(res?.data.action===true){
+              toast.error('The User is Blocked')
             }
           });
         }}

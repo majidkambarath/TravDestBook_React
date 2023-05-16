@@ -8,3 +8,12 @@ export const userManageFetchApi = async()=>{
         
     }
 }
+
+export const userBlockingApi = async(id:string)=>{
+    try {
+        return await axios.patch(`/admin/userBlockingApi?id=${id}`)
+    } catch (error) {
+        console.log(error);
+        
+    }
+}

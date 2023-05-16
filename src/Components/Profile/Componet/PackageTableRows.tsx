@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { NavLink } from "react-router-dom";
 import { FcInfo } from "react-icons/fc";
 import Swal from "sweetalert2";
@@ -8,10 +8,12 @@ import { useDispatch } from "react-redux";
 import { resetDestinationShowData } from "../../../Redux/slice/bookingIvoice";
 import { setBookingDetails } from "../../../Redux/slice/bookingDetailsSlice"
 import { toast } from "react-hot-toast";
-function PackageTableRows({ data, BDate, ADate, i }: any) {
+function PackageTableRows({ data ,i }: any) {
   const dispatch = useDispatch();
-
-  const handleCancel = async (id: string) => {
+  const [check , setCheck] = useState([])
+  console.log(check);
+  
+  const handleCancel = async (id: string,userId:string) => {
     Swal.fire({
       title: "Are you sure?",
       text: "This action cannot be undone",
@@ -22,12 +24,19 @@ function PackageTableRows({ data, BDate, ADate, i }: any) {
       confirmButtonText: "Yes, do it!",
       cancelButtonText: "Cancel",
     }).then((result: any) => {
-      if (result.isConfirmed) {
+      if (result.isConfirmed) { 
         try {
-          bookingCancelApi(id).then((res) => {
+          console.log(userId+'-----------------');
+          
+          bookingCancelApi(id,userId).then((res) => {
+            
             if (res?.data.success) {
             //   setCanceledClicked(true);
-            dispatch(setBookingDetails(res.data.bookingData))
+            console.log(res.data.bookingData);
+            // setCheck(res.data.bookingData)
+            
+            
+              dispatch(setBookingDetails(res.data.bookingData))
               dispatch(resetDestinationShowData());
               toast.success("Your Booking is Cancelled");
             }
@@ -47,22 +56,22 @@ function PackageTableRows({ data, BDate, ADate, i }: any) {
           {i + 1}
         </td>
         <td className="whitespace-nowrap px-2 py-4  ">
-          <div className="md:hidden block">{data.Title.slice(0, 15)}</div>
-          <div className=" hidden md:block">{data.Title}</div>
+          <div className="md:hidden block">{data?.Title.slice(0, 15)}</div>
+          <div className=" hidden md:block">{data?.Title}</div>
         </td>
         <td className="whitespace-nowrap px-2 py-4 hidden md:block">
-          {data.priceCate}
+          {data?.priceCate}
         </td>
-        <td className="whitespace-nowrap  py-4 font-medium">{BDate}</td>
-        <td className="whitespace-nowrap px-1 py-4">{ADate}</td>
-        <td className="whitespace-nowrap px-2 py-4"> {data.SubTotal}</td>
+        <td className="whitespace-nowrap  py-4 font-medium">2/5/2023</td>
+        <td className="whitespace-nowrap px-1 py-4">4/5/2023</td>
+        <td className="whitespace-nowrap px-2 py-4"> {data?.SubTotal}</td>
         <td className="whitespace-nowrap px-2 py-4 font-medium hidden md:block">
-          {data.BookingStatus === "Success" && (
+          {data?.BookingStatus === "Success" && (
             <div className="inline-block whitespace-nowrap rounded-[0.27rem] bg-success-200 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-success-700">
               Success
             </div>
           )}
-          {data.BookingStatus === "Cancelled" && (
+          {data?.BookingStatus === "Cancelled" && (
             <div className="inline-block whitespace-nowrap rounded-[0.27rem] bg-danger-200 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-danger-700">
               Cancelled
             </div>
@@ -88,7 +97,7 @@ function PackageTableRows({ data, BDate, ADate, i }: any) {
             <td className="whitespace-nowrap px-2 py-4 text-red-600 cursor-pointer">
               {data.BookingStatus === "Success" ? (
                 <div>
-                  <GiCancel onClick={() => handleCancel(`${data._id}`)} />
+                  <GiCancel onClick={() => handleCancel(`${data._id}`,`${data.userDetails}`)} />
                 </div>
               ) : null}
             </td>

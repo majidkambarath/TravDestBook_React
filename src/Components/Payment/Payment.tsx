@@ -104,7 +104,7 @@ export default function PaymentPage() {
                if(result?.data.success===true){
                 dispatch(resetPassengerCount())
                 dispatch(resetSelectedServices())
-                navigate('/success')
+                navigate('/success', {state: "payment"})
                }
               
             } catch (error) {

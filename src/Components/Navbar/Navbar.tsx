@@ -55,7 +55,7 @@ DESTINATIONS
       <NavLink to={'/about'}>
 
 <p className="flex  py-2 pl-3 pr-4   font-serif rounded md:bg-transparent md:text-white md:text-md md:font-bold  md:p-0 dark:text-white">
-ABOUTS
+ABOUTUS
 </p>
 </NavLink>
       </Typography>
@@ -66,6 +66,19 @@ ABOUTS
         className="p-1 font-normal"
       >
       <NavLink to={'/service'}>
+
+<p className="flex  py-2 pl-3 pr-4   font-serif rounded md:bg-transparent md:text-white md:text-md md:font-bold  md:p-0 dark:text-white">
+STORY
+</p>
+</NavLink>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-normal"
+      >
+      <NavLink to={'/story'}>
 
 <p className="flex  py-2 pl-3 pr-4   font-serif rounded md:bg-transparent md:text-white md:text-md md:font-bold  md:p-0 dark:text-white">
 SERVICES
@@ -119,7 +132,7 @@ CONTACTS
     </NavLink> 
         </Typography>
         <div className="hidden lg:block ">{navList}</div>
-        <NavLink to='/booking'>
+        <NavLink to='/destination'>
         <Button variant="gradient" size="sm" className="hidden lg:inline-block   font-Ariza">
            BOOK NOW 
         </Button>
@@ -167,7 +180,7 @@ CONTACTS
       <MobileNav open={openNav}>
         <div className="container mx-auto">
           {navList}
-          <NavLink to='/booking'>
+          <NavLink to='/destination'>
           <Button variant="gradient" size="sm" fullWidth className="mb-2 font-Ariza ">
           BOOK NOW 
           </Button>

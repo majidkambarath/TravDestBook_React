@@ -14,6 +14,8 @@ function UserProtect() {
           token,
         })
         .then((res:any) => {
+          console.log(res.data);
+          
           if (res.data.user) {
             setAuth(true);
           } else {
@@ -22,6 +24,8 @@ function UserProtect() {
         });
     } catch (error:any) {
       console.log(error.message);
+   
+      
     }
   }, [navigate,token]);
 

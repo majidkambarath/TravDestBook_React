@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from "../../Redux/store";
 import { otpVerifiyApi } from '../../Api/user/Auth/AuthApi';
 import { useNavigate } from "react-router-dom";
-import {  toast } from 'react-toastify';
+import {  toast } from 'react-hot-toast';
 export default function VerifyPage() {
   const navigate = useNavigate()
   const authData = useSelector((state: RootState)=> state.authData.authData); 

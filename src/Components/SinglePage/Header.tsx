@@ -31,7 +31,7 @@ export default function Header({
           <div className="flex justify-between">
             <div className="md:py-8 py-5 md:px-8 px-5 md:mt-0  pt-20  md:pt-5">
               <h1 className="font-Yatra md:text-2xl text-xl underline">
-                {setDestination.title}
+                {setDestination?.title}
                 <span className="font-Ariza md:text-2xl text-xl">
                   {" "}
                   {setDestination?.duration.day}Days

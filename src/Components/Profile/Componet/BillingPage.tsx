@@ -11,10 +11,10 @@ export default function BillingPage() {
     const { id } = useParams<string>();
     console.log(id);  
  
-    const BookingDate = new Date(details.BookingData)
-    const BDate =BookingDate.toISOString().split('T')[0]
-    const ArrivedDate = new Date(details.ArrivedDate)
-    const ADate =ArrivedDate.toISOString().split('T')[0]
+    // const BookingDate = new Date(details?.BookingData)
+    // const BDate =BookingDate?.toISOString().split('T')[0]
+    // const ArrivedDate = new Date(details?.ArrivedDate)
+    // const ADate =ArrivedDate?.toISOString().split('T')[0]
     
     useEffect(()=>{
         const get = async()=>{
@@ -40,7 +40,7 @@ export default function BillingPage() {
         <div className='bg-white drop-shadow-2xl h-[600px] mt-[40px] w-3/4 items-center  '>
           <div className='flex justify-between'>
             <div className='py-7 px-7'>
-              <h1 className='font-Yatra font-bold'>INVOICE # {details._id.slice(0,9 )} </h1>
+              <h1 className='font-Yatra font-bold'>INVOICE # {details?._id.slice(0,9 )} </h1>
             </div>
             <div className='mr-[60px] mt-3'>
                 <h1 className='font-Asap text-3xl from-neutral-500'>Tarvio</h1>
@@ -87,11 +87,11 @@ export default function BillingPage() {
                      
                       
                       <td className="whitespace-nowrap px-1 py-4">1</td>
-                      <td className="whitespace-nowrap px-2 py-4"> {details.Title} </td>
-                      <td className="whitespace-nowrap px-2 py-4"> {details.priceCate}</td>
-                      <td className="whitespace-nowrap px-2 py-4">{BDate}</td>
-                      <td className="whitespace-nowrap px-2 py-4"> {ADate} </td>
-                      <td className="whitespace-nowrap px-2 py-4"> {details.SubTotal}</td>
+                      <td className="whitespace-nowrap px-2 py-4"> {details?.Title} </td>
+                      <td className="whitespace-nowrap px-2 py-4"> {details?.priceCate}</td>
+                      <td className="whitespace-nowrap px-2 py-4">3/4/5</td>
+                      <td className="whitespace-nowrap px-2 py-4"> 4/5/5</td>
+                      <td className="whitespace-nowrap px-2 py-4"> {details?.SubTotal}</td>
                      
                   
                     </tr>

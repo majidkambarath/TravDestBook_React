@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchBookingCount, fetchClientsCount, fetchTotalrevenueCount } from "../../../Api/admin/adminDashboard/fetchCount";
+import BarChart from "./Bar";
+import { PieChart } from "./Pie";
 
 
 export default function Dashboard() {
@@ -19,6 +21,8 @@ useEffect(() => {
       setBookingCount(bookingRes?.data.bookingCount);
       setClient(clientsRes?.data.ClientsCount);
       setRevenue(totalRes?.data.totalRevenue);
+      
+      
     } catch (error) {
       console.log(error);
     }
@@ -80,8 +84,14 @@ useEffect(() => {
       </div>
       
         </div>
-     
-     
+     <div className="md:flex md:mt-[30px] h-[500px] justify-evenly">
+       <div className="w-[550px] ">
+        <BarChart/>
+       </div>
+       <div className="w-[400px]  md:-mt-0">
+        <PieChart/>
+       </div>
+     </div>
     </div>
   );
 }

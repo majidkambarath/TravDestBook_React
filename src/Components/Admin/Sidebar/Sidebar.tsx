@@ -5,6 +5,9 @@ import { HiMenuAlt3 } from "react-icons/hi";
 import { MdOutlineDashboard } from "react-icons/md";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { GrMapLocation } from "react-icons/gr";
+
+import { TbBrandBooking } from "react-icons/tb";
+import { GrAttraction } from "react-icons/gr";
 import { BsFillChatDotsFill } from "react-icons/bs";
 import { BsBuildingAdd } from "react-icons/bs";
 import { MdOutlineLogout } from "react-icons/md";
@@ -20,7 +23,8 @@ const AdminNavbar = () => {
     { name: "User", link: "/admin/user", icon: AiOutlineUsergroupAdd },
     { name: "Destination ", link: "/admin/destination", icon: GrMapLocation },
     { name: "Category", link: "/admin/category", icon: BsBuildingAdd },
-    { name: "Actvtity", link: "/admin/actvtity", icon: BsBuildingAdd },
+    { name: "Actvtity", link: "/admin/actvtity", icon: GrAttraction },
+    { name: "Booking", link: "/admin/booking", icon: TbBrandBooking },
     { name: "Chat", link: "/admin/chat", icon: BsFillChatDotsFill },
     { name: "Logout", link:'/admin/login',icon: MdOutlineLogout , onClick: ()=>{
 localStorage.removeItem("admin");

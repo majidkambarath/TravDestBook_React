@@ -25,3 +25,21 @@ export const fetchTotalrevenueCount = async()=>{
         
     }
 }
+
+export const fetchBookingDetails = async()=>{
+    try {
+        return await axios.get('/admin/fetchBookingDate')
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+export const fetchingAdminDashboard = async()=>{
+    try {
+        return await axios.get('/admin/fetchAdminDashboardBookingCount')
+    } catch (error) {
+        console.log(error);
+        
+    }
+}

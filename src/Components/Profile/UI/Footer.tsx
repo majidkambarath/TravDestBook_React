@@ -3,9 +3,11 @@ import { AiOutlineUser } from "react-icons/ai";
 import { GrMapLocation } from "react-icons/gr";
 import { AiFillHome } from "react-icons/ai";
 import { IoMdLogOut } from "react-icons/io";
-import { FaHistory } from "react-icons/fa";
+import { VscPreview } from "react-icons/vsc";
+
 import UserDetails from "../Componet/UserDetails";
 import BookingDetails from '../Componet/PackageDetails'
+import Stroy from "../Componet/Stroy";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { resetAuthDataStore } from "../../../Redux/slice/authSlice";
@@ -52,10 +54,10 @@ export default function Footer() {
       icon: <AiFillHome onClick={()=>navigate('/')} className="text-4xl -mt-2" />,
     },
     {
-      label: "History",
-      value: "History",
-      component: <div >History</div>,
-      icon: <FaHistory className="disabled" />,
+      label: "story",
+      value: "story",
+      component: <div ><Stroy/></div>,
+      icon: <VscPreview  />,
     },
     {
       label: "Logout",

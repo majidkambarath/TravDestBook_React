@@ -5,6 +5,7 @@ import PackageDetails from "../Componet/PackageDetails";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { resetAuthDataStore } from "../../../Redux/slice/authSlice";
+import Stroy from "../Componet/Stroy";
 interface TabData {
   label: string;
   value: string;
@@ -29,6 +30,13 @@ export default function ContantProfile() {
       value: "PackageDetails",
       component: <div>
         <PackageDetails/>
+      </div>,
+    },
+    {
+      label: "Tell Your Story",
+      value: "TellYourStroy",
+      component: <div>
+        <Stroy/>
       </div>,
     },
    

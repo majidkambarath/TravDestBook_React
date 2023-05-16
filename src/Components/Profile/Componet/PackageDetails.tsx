@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React,{useEffect, useState} from "react";
 import './Package.css'
 import { RootState } from "../../../Redux/store";
 import { Link } from "react-router-dom";
@@ -12,14 +12,20 @@ export default function PackageDetails() {
   const BookingState = useSelector(
     (state: RootState) => state.bookingdetails.bookingData
   );
+  console.log(BookingState);
+  
   const [loader,setLoader]=React.useState<boolean>(false)
+  const [check , setCheck] = useState([])
+  console.log(check);
+  
   const dispatch = useDispatch()
   useEffect(()=>{
     const get = async()=>{
       setLoader(true)
       try {
-        await BookingFetchApi().then((res)=>{
+         BookingFetchApi().then((res)=>{
            if(res?.data.success){
+           
             dispatch(setBookingDetails(res.data.bookingData))
             setLoader(false)
            }
@@ -31,11 +37,11 @@ export default function PackageDetails() {
       }
     }
     get()
-  },[setLoader,dispatch]) 
+  },[]) 
   return (
     <>
     {
-      BookingState.length===0 ?   
+      BookingState?.length===0 ?   
     <div className="mt-5">
       <h1 className="ml-1 font-Ariza text-lg md:text-2xl">Booking Now</h1>
       <div className="banner bg-cover bg-center  h-auto text-white py-24 px-10 w-full md:ml-0 ml-1">
@@ -91,17 +97,13 @@ export default function PackageDetails() {
              </tr>
            </thead>
            <tbody>
-             {BookingState.map((data, i) => {
-               const BookingDate = new Date(data.BookingData);
-               const BDate = BookingDate.toISOString().split("T")[0];
-               const ArrivedDate = new Date(data.ArrivedDate);
-               const ADate = ArrivedDate.toISOString().split("T")[0];
+             {BookingState?.map((data, i):any => {
+              
                console.log(data);
                return (
                  <PackageTableRows
                    data={data}
-                   BDate={BDate}
-                   ADate={ADate}
+                  
                    i={i}
                  />
                );

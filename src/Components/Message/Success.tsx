@@ -1,7 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
+import React,{useEffect} from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const SuccessPage = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
+  useEffect(() => {
+    window.onpopstate = e => {
+      if(location?.state === "payment"){
+        navigate('/')
+      }
+    };
+  });
   return (
     <>
     <div className="bg-white h-screen w-full flex justify-center items-center">

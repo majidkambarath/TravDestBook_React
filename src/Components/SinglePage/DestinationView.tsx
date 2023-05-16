@@ -34,7 +34,8 @@ export default function DestinationView() {
           setLodaer(false);
         });
       } catch (error) {
-        console.log(error);
+        console.log(error+'oi9u9oy8yiu');
+
       }
     };
     fetchDestination();

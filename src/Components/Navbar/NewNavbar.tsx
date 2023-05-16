@@ -118,7 +118,7 @@ CONTACTS
     </NavLink> 
         </Typography>
         <div className="hidden lg:block ">{navList}</div>
-        <NavLink to='/booking'>
+        <NavLink to='/destination'>
         <Button variant="gradient" size="sm" className="hidden lg:inline-block text-black   font-Ariza">
            BOOK NOW 
         </Button>
@@ -166,7 +166,7 @@ CONTACTS
       <MobileNav open={openNav}>
         <div className="container mx-auto">
           {navList}
-          <NavLink to='/booking'>
+          <NavLink to='/destination'>
           <Button variant="gradient" size="sm" fullWidth className="mb-2 font-Ariza  ">
           BOOK NOW 
           </Button>

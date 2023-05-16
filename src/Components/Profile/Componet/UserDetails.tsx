@@ -43,11 +43,11 @@ export default function UserDetails() {
   const [selectedFile, setSelectedFile] = useState<File | any>(null);
   useEffect(() => {
     setUserData({
-    fname: AuthDetails.first ? AuthDetails.first : '',
-    lname:AuthDetails.last ? AuthDetails.last : '',
-    address:AuthDetails.address ? AuthDetails.address : '',
-    phone:AuthDetails.phone ? AuthDetails.phone : 0,
-    email:AuthDetails.email ? AuthDetails.email : '',
+    fname: AuthDetails?.first ? AuthDetails?.first : '',
+    lname:AuthDetails?.last ? AuthDetails?.last : '',
+    address:AuthDetails?.address ? AuthDetails?.address : '',
+    phone:AuthDetails?.phone ? AuthDetails?.phone : 0,
+    email:AuthDetails?.email ? AuthDetails?.email : '',
 
     });
   }, [AuthDetails]);
@@ -74,6 +74,7 @@ const handleSubmit = async(e:any)=>{
       await userDetailsUpdate(Data).then((res)=>{
         if(res?.data.success===true){
           dispatch(setAuthDataStore(res?.data.userData))
+          
           toast.success('Successfully !')
         }
         

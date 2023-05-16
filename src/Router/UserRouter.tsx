@@ -31,13 +31,13 @@ export default function UserRouter() {
       <Route path="/chat" element={<ChatPage />} />
       <Route path="/packageCategory/:id" element={<Package />} />
       <Route path="/destination" element={<DestinationPage />} />
-      <Route element={<Protect />}>
+      <Route element={<Protect/>}>
         <Route path="/destinationView/:id" element={<PackageView />} />
         <Route path="/booking" element={<BookingDetails />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/success" element={<SuccessPage />} />
-      <Route path="/profile" element={<ProfilePage />} />
-      <Route path="/bookingShow/:id" element={< BookingShow/>} />
+       <Route path="/profile" element={<ProfilePage />} />
+       <Route path="/bookingShow/:id" element={< BookingShow/>} />
       </Route>
       <Route path={"*"} element={<Error401 />} />
     </Routes>

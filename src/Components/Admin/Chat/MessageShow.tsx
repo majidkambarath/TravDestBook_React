@@ -39,7 +39,7 @@ export default function MessageShow({ conversationsData ,scrollRef }: any) {
                   item?.sender === "user" ? "ml-3" : "mr-3 "
                 } text-sm bg-white py-2 px-4 shadow rounded-xl`}
               >
-                <div>{item.message}</div>
+                <p >{item.message}</p>
               </div>
               <span className={`text-xs text-gray-500 leading-none ${  item?.sender === "user" ? 'ml-5' : 'ml-0'} `}>
               
